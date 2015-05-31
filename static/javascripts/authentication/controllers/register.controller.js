@@ -22,7 +22,7 @@
 
         function activate(){
             if(Authentication.isAuthenticated()){
-                $location.url('/');
+                //$location.url('/');
             }
         }
     }

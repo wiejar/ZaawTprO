@@ -25,7 +25,7 @@
             }
 
             function profileErrorFn(data, status, headers, config){
-                $location.url('/');
+                //$location.url('/');
                 Snackbar.error('That user does not exist.');
             }
 

@@ -4,7 +4,6 @@ __author__ = 'slawek'
 
 
 from rest_framework import serializers
-from authentication.serializers import Account
 from posts.models import Post
 from authentication.serializers import AccountSerializer
 

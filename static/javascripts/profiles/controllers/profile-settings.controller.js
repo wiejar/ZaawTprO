@@ -23,8 +23,8 @@
             var authenticatedAccount = Authentication.getAuthenticatedAccount();
             var username = $routeParams.username.substr(1);
 
-            if (!authenticatedAccount || authenticatedAccount.username !    = username) {
-                $location.url('/');
+            if (!authenticatedAccount || authenticatedAccount.username != username) {
+                //$location.url('/');
                 Snackbar.error('You are not authorised to see this page');
             }
 
@@ -37,7 +37,7 @@
 
             function profileErrorFn(data, status, headers, config) {
                 vm.profile = data.data;
-                $location.url('/');
+                //$location.url('/');
                 Snackbar.error('That user does not exist');
             }
         }

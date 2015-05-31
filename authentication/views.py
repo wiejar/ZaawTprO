@@ -45,7 +45,6 @@ class LoginView(views.APIView):
     def post(self, request, format=None):
         datas = request.body
         data = json.loads(datas.decode("utf-8"))
-        datas3 = data
         email = data.get('email', None)
         password = data.get('password', None)
 

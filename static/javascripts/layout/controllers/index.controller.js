@@ -21,6 +21,7 @@
             Posts.all().then(postsSuccessFn, postsErrorFn);
 
             $scope.$on('post.created', function(event, post){
+
                 vm.posts.unshift(post);
             });
 
@@ -29,6 +30,7 @@
             });
 
             function postsSuccessFn(data, status, headers, config){
+                console.log(data.data);
                 vm.posts = data.data;
             }
 

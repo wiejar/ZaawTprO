@@ -7,7 +7,9 @@
         'application.routes',
         'application.authentication',
         'application.layout',
+            'application.picture',
         'application.posts',
+            'application.products',
         'application.profiles',
         'application.utils']).run(run);
     angular.module('application.routes', ['ngRoute']);

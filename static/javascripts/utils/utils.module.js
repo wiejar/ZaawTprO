@@ -5,6 +5,7 @@
 (function(){
     'use strict';
 
-    angular.module('application.utils',['application.utils.services']);
+    angular.module('application.utils', ['application.utils.services', 'application.utils.directives']);
+    angular.module('application.utils.directives', []);
     angular.module('application.utils.services',[]);
 })();

@@ -52,7 +52,7 @@
 
         function loginSuccess(data, status, headers, config) {
             Authentication.setAuthenticatedAccount(data.data);
-            $location.url('/');
+            //$location.url('/');
             $window.location.reload();
         }
 
@@ -63,7 +63,7 @@
 
         function logoutSuccess(data, status, headers, config) {
             Authentication.unauthenticated();
-            $location.url('/');
+            //$location.url('/');
             $window.location.reload();
         }
 

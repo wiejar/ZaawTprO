@@ -1,0 +1,32 @@
+<div class>
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{ vm.basic.uniqueName }}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <gallery photos="vm.basic.pictures"/>
+                </div>
+                <div class="col-md-4">
+                    <form>
+                        <div>
+                            <h1>{{ vm.basic.price | currency:'PLN':2}}</h1>
+                        </div>
+                        <div class="form-group">
+                            <h6>
+                                <span>Quantity:</span>
+                                <input type="number" ng-value="vm.quantity"/>
+                            </h6>
+                        </div>
+                        <button class="btn btn-success">
+                            <h3>BUY</h3>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>{{ vm.basic.detailDesc.url }}</div>
+    <div>summary</div>
+
+    {{ vm.examples | json }}
+</div>

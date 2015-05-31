@@ -18,6 +18,10 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
+        }).when('/productShow', {
+            controller: 'ProductsController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/temporary/productShow.html'
         }).when('/+:username', {
             controller: 'ProfileController',
             controllerAs: 'vm',
@@ -30,6 +34,10 @@
             controller: 'ProfileSettingsController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/settings.html'
+        }).when('/product/:productName', {
+            controller: 'productPage',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/products/productPage.html'
         }).otherwise('/');
     }
 })();
