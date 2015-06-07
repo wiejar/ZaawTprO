@@ -1,20 +1,16 @@
-<div>
+<div class="container sliderer">
+    <img ng-repeat="photo in photos" class="slidere" ng-swipe-right="prev()" ng-swipe-left="next()"
+         ng-show="isActive($index)" ng-src="{{ photo.picture.url }}"/>
 
-    <div class="container sliderer">
-        <img ng-repeat="photo in photos" class="slidere" ng-swipe-right="prev()" ng-swipe-left="next()"
-             ng-show="isActive($index)" ng-src="{{ photo.picture.url }}"/>
+    <!-- prever / nexter controls -->
+    <a class="arrowing prever" href="#" ng-click="prev()"></a>
+    <a class="arrowing nexter" href="#" ng-click="next()"></a>
 
-        <!-- prever / nexter controls -->
-        <a class="arrowing prever" href="#" ng-click="prev()"></a>
-        <a class="arrowing nexter" href="#" ng-click="next()"></a>
-
-        <!-- extra naverigation controls -->
-        <ul class="naver">
-            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
-                <img src="{{ photo.picture.url }}" alt="{{ photo.picture.desc }}" title="{{ photo.picture.desc }}"
-                     ng-click="setCurrent($index);"/>
-            </li>
-        </ul>
-    </div>
-
+    <!-- extra naverigation controls -->
+    <ul class="naver">
+        <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+            <img src="{{ photo.picture.url }}" alt="{{ photo.picture.desc }}" title="{{ photo.picture.desc }}"
+                 ng-click="setCurrent($index);"/>
+        </li>
+    </ul>
 </div>
