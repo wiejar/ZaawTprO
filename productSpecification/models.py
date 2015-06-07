@@ -8,7 +8,7 @@ from managers.managers import InheritanceManager
 __author__ = 'slawek'
 
 
-class ProductSpecification(models.Model, RealInstaceProvider):
+class ProductSpecification(models.Model):
     product = models.ForeignKey(Product, related_name='productSpecification')
     child = InheritanceManager()
 

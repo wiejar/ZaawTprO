@@ -96,8 +96,8 @@
     </table>
     <table name="picture_picture" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="url" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="desc" sqlType="VARCHAR(50)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="url" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <primary-key columns="id"/>
       <exported-key name="#FAKE_picture4product_picture4product_2" table="picture4product_picture4product" schema="" catalog="" columns="picture_id"/>
     </table>
@@ -111,17 +111,56 @@
       <foreign-key name="#FAKE_posts_post_1" columns="author_id" ref-table="authentication_account" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="posts_post_4f331e2f" unique="true" columns="author_id"/>
     </table>
+    <table name="productSpecification_harddrive" schema="" catalog="" type="TABLE">
+      <column name="productspecification_ptr_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="storageInGB" sqlType="DECIMAL" precision="2000000000" scale="10" nullable="false" jdbcType="6"/>
+      <primary-key columns="productspecification_ptr_id"/>
+      <foreign-key name="#FAKE_productSpecification_harddrive_1" columns="productspecification_ptr_id" ref-table="productSpecification_productspecification" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="productSpecification_monitor" schema="" catalog="" type="TABLE">
+      <column name="productspecification_ptr_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="diagonal" sqlType="DECIMAL" precision="2000000000" scale="10" nullable="false" jdbcType="6"/>
+      <primary-key columns="productspecification_ptr_id"/>
+      <foreign-key name="#FAKE_productSpecification_monitor_1" columns="productspecification_ptr_id" ref-table="productSpecification_productspecification" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="productSpecification_productspecification" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <foreign-key name="#FAKE_productSpecification_productspecification_1" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_productSpecification_harddrive_1" table="productSpecification_harddrive" schema="" catalog="" columns="productspecification_ptr_id"/>
+      <exported-key name="#FAKE_productSpecification_monitor_1" table="productSpecification_monitor" schema="" catalog="" columns="productspecification_ptr_id"/>
+      <index name="productSpecification_productspecification_9bea82de" unique="true" columns="product_id"/>
+    </table>
+    <table name="product_category" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR(50)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <exported-key name="#FAKE_product_product_1" table="product_product" schema="" catalog="" columns="category_id"/>
+    </table>
     <table name="product_product" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
-      <column name="category" sqlType="VARCHAR(40)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="uniqueName" sqlType="VARCHAR(100)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="shortDesc" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="price" sqlType="DECIMAL" precision="2000000000" scale="10" nullable="false" jdbcType="6"/>
       <column name="created_at" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
       <column name="updated_at" sqlType="DATETIME" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <column name="detailDesc_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="true" jdbcType="4"/>
+      <column name="category_id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
       <primary-key columns="id"/>
+      <foreign-key name="#FAKE_product_product_1" columns="category_id" ref-table="product_category" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_product_product_2" columns="detailDesc_id" ref-table="product_productdescription" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="#FAKE_picture4product_picture4product_1" table="picture4product_picture4product" schema="" catalog="" columns="product_id"/>
+      <exported-key name="#FAKE_productSpecification_productspecification_1" table="productSpecification_productspecification" schema="" catalog="" columns="product_id"/>
+      <index name="product_product_b583a629" unique="true" columns="category_id"/>
+      <index name="product_product_99a5acd0" unique="true" columns="detailDesc_id"/>
+    </table>
+    <table name="product_productdescription" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="2000000000" scale="10" nullable="false" jdbcType="4"/>
+      <column name="url" sqlType="VARCHAR(200)" precision="2000000000" scale="10" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <exported-key name="#FAKE_product_product_2" table="product_product" schema="" catalog="" columns="detailDesc_id"/>
     </table>
     <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
       <column name="name" sqlType="" precision="2000000000" scale="10" nullable="true" jdbcType="12"/>
