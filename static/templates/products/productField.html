@@ -1,0 +1,7 @@
+<div ng-if="Utileeer.isNotEmpty(value)" class="row">
+    <div class="col-xs-4">{{ name }}</div>
+    <div class="col-xs-8">
+        <span>{{ value }}</span>
+        <span ng-if="Utileeer.isNotEmpty(units)">{{ units }}</span>
+    </div>
+</div>

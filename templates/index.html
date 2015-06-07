@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="application">
 <head>
-  <title>thinkster-django-angular-boilerplate</title>
+    <title>thinkster-django-angular-boilerplate</title>
 
-  <base href="/" />
+    <base href="/"/>
 
-  {% include 'stylesheets.html' %}
+    {% include 'stylesheets.html' %}
+    {% include 'javascripts.html' %}
 </head>
 
 <body>
-  {% include 'navbar.html' %}
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 ng-view"></div>
+{% include 'navbar.html' %}
+<div class="row">
+    <div class="col-xs-3">
+        <ng-include src="'/static/templates/layout/leftMenu.html'"></ng-include>
     </div>
-  </div>
+    <div class="col-xs-9">
+        <div class="container-fluid">
+            <div class="col-xs-12 ng-view"></div>
+        </div>
+    </div>
+</div>
+</div>
 
-  {% include 'javascripts.html' %}
 </body>
 </html>

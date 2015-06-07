@@ -1,4 +1,4 @@
-<div class>
+<div>
     <div class="panel panel-primary">
         <div class="panel-heading">{{ vm.basic.uniqueName }}</div>
         <div class="panel-body">
@@ -25,8 +25,20 @@
             </div>
         </div>
     </div>
-    <div>{{ vm.basic.detailDesc.url }}</div>
-    <div>summary</div>
-
-    {{ vm.examples | json }}
+    <div ng-if="vm.isNotEmpty(vm.basic.detailDesc.url)">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Special description</div>
+            <div class="panel-body">
+                <ng-include src="vm.basic.detailDesc.url"></ng-include>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Specification</div>
+            <div class="panel-body">
+                <ng-include src="'/static/templates/products/summary.html'"></ng-include>
+            </div>
+        </div>
+    </div>
 </div>

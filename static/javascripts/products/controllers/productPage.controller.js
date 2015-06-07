@@ -9,10 +9,11 @@
 
     angular.module('application.products.controllers').controller('productPage', productPage);
 
-    productPage.$inject = ['$scope', '$sce', 'ProductService', '$routeParams'];
+    productPage.$inject = ['$scope', '$sce', 'ProductService', '$routeParams', 'Utileeer'];
 
-    function productPage($scope, $sce, ProductService, $routeParams) {
+    function productPage($scope, $sce, ProductService, $routeParams, Utileeer) {
         var vm = this;
+        vm.isNotEmpty = Utileeer.isNotEmpty;
 
         var basic = {
             name: "burger",
@@ -34,9 +35,20 @@
         vm.basic = basic;
         vm.examples = 'example';
 
+
         function successGetProduct(data, status, headers, config) {
             vm.basic = data.data;
             vm.examples = vm.basic;
+            concatSpecification()
+        }
+
+        function concatSpecification() {
+            var allSpecification = {};
+            for (var tab in vm.basic.productSpecification) {
+                jQuery.extend(allSpecification, vm.basic.productSpecification[tab].token[0].fields);
+            }
+
+            vm.basic.allSpecification = allSpecification;
         }
 
 

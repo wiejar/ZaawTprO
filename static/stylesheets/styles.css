@@ -19,3 +19,34 @@
     bottom: 20px;
     right: 20px;
 }
+
+/*.normal_menu {
+    list-style-type: none;
+    background-color: #FFEB3B;
+    color: #ffffff;
+}
+
+.normal_menu a:active {
+    background-color: #AFB42B;
+    color: #ffffff;
+}*/
+
+.normal_menu a:hover {
+    background-color: #FFC107 !important;
+    color: #ffffff;
+}
+
+ul.nav .normal_menu a, ul.nav .normal_menu a:focus {
+    background-color: #FFEB3B;
+    color: #ffffff;
+}
+
+ul.nav .normal_menu a:hover, {
+    background-color: #FFC107 !important;
+    color: #ffffff;
+}
+
+ul.nav .normal_menu a:active, .active {
+    background-color: #AFB42B !important;
+    color: #ffffff;
+}

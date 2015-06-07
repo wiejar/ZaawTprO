@@ -7,21 +7,19 @@
 
     angular.module('application.products.controllers').controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$scope', 'Picture', 'ProductService', '$location'];
+    ProductsController.$inject = ['$scope', 'ProductService', '$location', '$routeParams'];
 
-    function ProductsController($scope, Picture, ProductService, $location) {
+    function ProductsController($scope, ProductService, $location, $routeParams) {
         var vm = this;
         vm.columns = [];
-
-
-        Picture.get(1).then(successGetPicture, failGetPicture);
-        ProductService.getByCategory(/*'None'*/).then(successGetProducts, failGetProducts);
-
         vm.poducts = [];
+        vm.dial = dial;
 
         activate();
 
         function activate() {
+            var category = $routeParams.categoryName;
+            ProductService.getByCategory(category).then(successGetProducts, failGetProducts);
 
             $scope.$watchCollection(function () {
                 return $scope.poducts
@@ -30,7 +28,6 @@
                 return $(window).width();
             }, render);
 
-            //    picture.get(1).then(createPostSuccessFn, createPostErrorFn);;
             render(vm.poducts, null);
             countProperty();
         }
@@ -48,8 +45,6 @@
                 return 1;
             }
         }
-
-        vm.dial = dial;
 
         function dial(uniqueName) {
             $location.path('/product/' + uniqueName);
@@ -75,25 +70,13 @@
             var width = Math.floor($(window).width() / calculateNumberOfColumns()) + "px";
         }
 
-        vm.result = ' elo';
-
-        function successGetPicture(data, status, headers, cinfig) {
-            vm.result = data.data;
-        }
-
-        function failGetPicture(data, status, headers, cinfig) {
-            vm.result = data.error;
-            console.log(vm.result);
-        }
-
         function successGetProducts(data, status, headers, cinfig) {
             vm.poducts = data.data;
             render(vm.poducts, null);
         }
 
         function failGetProducts(data, status, headers, cinfig) {
-            vm.resultProducts = data.error;
-            console.log(vm.resultProducts);
+            console.log(data);
         }
     }
 })();

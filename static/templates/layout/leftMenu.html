@@ -1,0 +1,12 @@
+<div ng-controller="LeftMenuController as vm" role="navigation">
+    <div style="background: #9E9E9E">
+        <ul class="nav">
+            <li class="normal_menu"><a href="/" ng-class="{ active: vm.isActive('/')}">Home</a></li>
+            <li ng-repeat="data in vm.result.data" class="normal_menu">
+                <a href="/category/{{ data.name }}" ng-class="{ active: vm.isActive('/category/'+data.name)}">
+                    {{ data.name }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
