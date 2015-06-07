@@ -2,50 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae74f7a3-037b-497c-abb0-7ed2e2a99435" name="Default" comment="dodanie:&#10;-strony produktu(60%)&#10;-strony z produktami (90%)">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-    </list>
-    <list id="b81f2ec2-1ebf-406f-9f1b-2d182b79dfe6" name="Failed commit: Default" comment="dodanie:&#10;- menu&#10;poprawa :&#10;-strony z produktami&#10;-strony produktu">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/managers/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/productSpecification/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/javascripts/products/services/category.service.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/html/desc/example.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/html/desc/hard.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/templates/layout/leftMenu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/managers/managers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/productSpecification/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/javascripts/products/directives/productField.directives.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/templates/products/productField.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/productSpecification/serializers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/templates/products/summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/javascripts/utils/services/util.services.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/productSpecification/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular/.bower.json" afterPath="$PROJECT_DIR$/static/bower_components/angular/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-animate/.bower.json" afterPath="$PROJECT_DIR$/static/bower_components/angular-animate/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-cookies/.bower.json" afterPath="$PROJECT_DIR$/static/bower_components/angular-cookies/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-route/.bower.json" afterPath="$PROJECT_DIR$/static/bower_components/angular-route/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-touch/.bower.json" afterPath="$PROJECT_DIR$/static/bower_components/angular-touch/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-animate/angular-animate.js" afterPath="$PROJECT_DIR$/static/bower_components/angular-animate/angular-animate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-animate/angular-animate.min.js" afterPath="$PROJECT_DIR$/static/bower_components/angular-animate/angular-animate.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-touch/angular-touch.js" afterPath="$PROJECT_DIR$/static/bower_components/angular-touch/angular-touch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bower_components/angular-touch/angular-touch.min.js" afterPath="$PROJECT_DIR$/static/bower_components/angular-touch/angular-touch.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/javascripts.html" afterPath="$PROJECT_DIR$/templates/javascripts.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product/models.py" afterPath="$PROJECT_DIR$/product/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/products/controllers/productPage.controller.js" afterPath="$PROJECT_DIR$/static/javascripts/products/controllers/productPage.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/templates/products/productPage.html" afterPath="$PROJECT_DIR$/static/templates/products/productPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/templates/temporary/productShow.html" afterPath="$PROJECT_DIR$/static/templates/temporary/productShow.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/products/controllers/products.controller.js" afterPath="$PROJECT_DIR$/static/javascripts/products/controllers/products.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/routes.js" afterPath="$PROJECT_DIR$/static/javascripts/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product/serializers.py" afterPath="$PROJECT_DIR$/product/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sever/settings.py" afterPath="$PROJECT_DIR$/sever/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/stylesheets/styles.css" afterPath="$PROJECT_DIR$/static/stylesheets/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/templates/products/tilesProduct.html" afterPath="$PROJECT_DIR$/static/templates/products/tilesProduct.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sever/urls.py" afterPath="$PROJECT_DIR$/sever/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product/views.py" afterPath="$PROJECT_DIR$/product/views.py" />
+      <change type="DELETED" beforePath="C:\Users\slawek\PycharmProjects\sever\db.sqlite3" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\slawek\PycharmProjects\sever\dbaaaaa.sqlite3" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/productSpecification/models.py" afterPath="$PROJECT_DIR$/productSpecification/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sever.iws" />
@@ -138,8 +97,28 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02866779" vertical-offset="0" max-vertical-offset="593">
-              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.024147727" vertical-offset="0" max-vertical-offset="704">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/productSpecification/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/productSpecification/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -154,11 +133,13 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/static/javascripts/product/products.module.js" />
         <option value="$PROJECT_DIR$/static/templates/products/menuProduct.html" />
         <option value="$PROJECT_DIR$/static/javascripts/product/directives/menuProduct.directives.js" />
         <option value="$PROJECT_DIR$/static/javascripts/product/directives/tilesProduct.directives.js" />
@@ -208,6 +189,7 @@
         <option value="$PROJECT_DIR$/static/templates/utils/gallery.html" />
         <option value="$PROJECT_DIR$/product/serializers.py" />
         <option value="$PROJECT_DIR$/static/templates/products/productPage.html" />
+        <option value="$PROJECT_DIR$/productSpecification/models.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
@@ -884,6 +866,13 @@
       <option name="number" value="Default" />
       <updated>1428769538031</updated>
     </task>
+    <task id="LOCAL-00001" summary="dodanie:&#10;- menu&#10;poprawa :&#10;-strony z produktami&#10;-strony produktu">
+      <created>1433678091209</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1433678091209</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -913,14 +902,15 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756758" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32792208" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20779221" sideWeight="0.5010661" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32540542" sideWeight="0.49840087" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32467532" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30378377" sideWeight="0.6273987" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20864865" sideWeight="0.56663114" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20779221" sideWeight="0.56663114" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1652452" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32889125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48593074" sideWeight="0.4989339" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24879615" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26190478" sideWeight="0.49840087" order="3" side_tool="false" content_ui="tabs" />
@@ -929,7 +919,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3547655" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48593074" sideWeight="0.4989339" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1267,10 +1256,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/productSpecification/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/productSpecification/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02866779" vertical-offset="0" max-vertical-offset="593">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.024147727" vertical-offset="0" max-vertical-offset="704">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
