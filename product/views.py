@@ -18,6 +18,15 @@ class SingleProductViewSet(viewsets.ModelViewSet):
         return (permissions.AllowAny(), )
 
 
+class SimpleSingleProductViewSet(viewsets.ModelViewSet):
+    lookup_field = 'id'
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializers
+
+    def get_permissions(self):
+        return (permissions.AllowAny(), )
+
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers

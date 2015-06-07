@@ -18,11 +18,6 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
-
-        }).when('/+:username', {
-            controller: 'ProfileController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/profiles/profile.html'
             /*    }).when('/productShow', { stare pokazywanie wszystkich produktów raczej do kosza
              controller: 'ProductsController',
              controllerAs: 'vm',
@@ -43,6 +38,14 @@
             controller: 'ProductsController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/temporary/productShow.html'
+        }).when('/basket', {
+            controller: 'BasketController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/basket/basketPage.html'
+        }).when('/+:username', {
+            controller: 'ProfileController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/profiles/profile.html'
         }).when('/', {
             controller: 'ProductsController',
             controllerAs: 'vm',

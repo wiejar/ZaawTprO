@@ -1,0 +1,48 @@
+<div>
+    <div class="row" ng-repeat="product in vm.productTable">
+        <div class="col-sm-12">
+            <div class="well">
+                <div class="post">
+                    <div class="post_meta">
+                        <span ng-click="click( {id:product.uniqueName} )">
+                           <span>
+                               <img ng-src="{{ product.pictures[0].picture.url }}" class="img-responsive"/>
+                            </span>
+                            <span style="font-weight: bold;">
+                                {{ product.name }}
+                            </span>
+                            <span style="font-weight: 100; font-size: smaller">
+                                {{ product.shortDesc }}
+                            </span>
+                            <span>
+                                 <input type="number" ng-model="product.quantity"
+                                        ng-change="vm.changeQuantity(product.id, product.quantity )"/>
+                            </span>
+                            <span style="font-weight: bold;">
+                                {{ product.price | currency:'PLN':2}}
+                            </span>
+                            <a class="btn btn-danger glyphicon glyphicon-trash" style="padding: 6px 12px;" href="#"
+                               ng-click="vm.remove(product.id)">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <span>
+            <a class="btn btn-danger glyphicon glyphicon-trash" style="padding: 6px 12px;" href="#"
+               ng-click="vm.removeAll()">
+                Remove All
+            </a>
+        </span>
+        <span>
+            <a class="btn btn-success glyphicon glyphicon-shopping-cart" style="padding: 6px 12px;" href="#"
+               ng-click="vm.toPay()">
+                To Pay
+            </a>
+        </span>
+    </div>
+</div>

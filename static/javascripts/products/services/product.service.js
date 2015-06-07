@@ -12,7 +12,8 @@
     function ProductService($http) {
         var service = {
             getByCategory: getByCategory,
-            getProduct: getProduct
+            getProduct: getProduct,
+            getSimpleProduct: getSimpleProduct
         };
 
         function getByCategory(category) {
@@ -24,6 +25,10 @@
 
         function getProduct(uniqueName) {
             return $http.get('/api/v1/product/' + uniqueName + '/');
+        }
+
+        function getSimpleProduct(id) {
+            return $http.get('/api/v1/simpleProduct/' + id + '/');
         }
 
         return service;

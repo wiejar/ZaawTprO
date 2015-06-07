@@ -12,6 +12,10 @@
 
     <div class="collapse navbar-collapse" id="not-google-plus-nav">
       <ul class="nav navbar-nav pull-right">
+          <li>
+              <a class="glyphicon glyphicon-shopping-cart" style="font-size:25px; " href="/basket">
+              </a>
+          </li>
         {% if user.is_authenticated %}
           <li><a href="/+{{ user.username }}">+{{ user.username }}</a></li>
           <li><a href="/+{{ user.username }}/settings">Settings</a></li>
