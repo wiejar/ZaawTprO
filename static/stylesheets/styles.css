@@ -47,6 +47,6 @@ ul.nav .normal_menu a:hover, {
 }
 
 ul.nav .normal_menu a:active, .active {
-    background-color: #AFB42B !important;
+    background-color: rgba(255, 248, 23, 0.51) !important;
     color: #ffffff;
 }
