@@ -13,12 +13,12 @@
 
     function productPage($scope, $sce, ProductService, $routeParams, Utileeer, BasketService) {
         var vm = this;
-        vm.isNotEmpty = Utileeer.isNotEmpty;
+        vm.isNotEmpty = Utileeer.isNotEmpty;        
         vm.quantity = 1;
         vm.basic = basic;
         vm.examples = 'example';
         vm.buyProduct = buyProduct;
-
+        
         var basic = {
             name: "burger",
             pictures: [],
@@ -36,10 +36,8 @@
         }
 
         function buyProduct() {
-            console.log('elo');
             BasketService.add(vm.basic.id, vm.quantity);
         }
-
 
         function successGetProduct(data, status, headers, config) {
             vm.basic = data.data;

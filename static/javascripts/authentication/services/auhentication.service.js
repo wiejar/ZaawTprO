@@ -8,9 +8,9 @@
     var authServiceApp = angular.module('application.authentication.services');
     authServiceApp.factory('Authentication', Authentication);
 
-    Authentication.$inject = ['$cookies', '$http', '$location', '$window'];
+    Authentication.$inject = ['$cookies', '$http', '$location', '$window', 'Snackbar'];
 
-    function Authentication($cookies, $http, $location, $window) {
+    function Authentication($cookies, $http, $location, $window, Snackbar) {
         var Authentication = {
             register: register,
             login: login,
@@ -59,6 +59,7 @@
         function loginFailure(data, status, headers, config) {
             console.error('Epic failure!');
             console.error(data.data);
+            Snackbar.show("Authentication failed!");
         }
 
         function logoutSuccess(data, status, headers, config) {
