@@ -36,7 +36,6 @@
         }
 
         function buyProduct() {
-            console.log('elo');
             BasketService.add(vm.basic.id, vm.quantity);
         }
 

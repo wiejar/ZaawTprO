@@ -7,9 +7,9 @@
 
     angular.module('application.basket.services').factory('BasketService', BasketService);
 
-    BasketService.$inject = ['$cookieStore', 'Utileeer'];
+    BasketService.$inject = ['$cookieStore', 'Utileeer', 'Snackbar'];
 
-    function BasketService($cookieStore, Utileeer) {
+    function BasketService($cookieStore, Utileeer, Snackbar) {
         var BasketService = {
             get: get,
             put: put,
@@ -56,6 +56,13 @@
             } else {
                 basket[ob].quantity = basket[ob].quantity + quantity;
             }
+
+            if (quantity > 1)
+               Snackbar.show(quantity + " items added to cart.");
+            else if (quantity == 1)
+                Snackbar.show(quantity + " item added to cart.");
+            else
+                Snackbar.show("Invalid quantity");
 
             put(basket);
         }
