@@ -12,7 +12,9 @@
                             {{ product.shortDesc }}
                         </div>
                         <div>
-                            <h4>{{ product.price | currency:'PLN':2}}</h4>
+                            <h4>
+                                <price-field value="product.price"></price-field>
+                            </h4>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
 
     angular.module('application.basket.controllers').controller('BasketController', BasketController);
 
-    BasketController.$inject = ['$scope', 'BasketService', 'ProductService'];
+    BasketController.$inject = ['$scope', 'BasketService', 'ProductService', '$location'];
 
     function BasketController($scope, BasketService, ProductService, $location) {
         var vm = this;
