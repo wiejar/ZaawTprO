@@ -58,7 +58,7 @@
 }
 
 .naver li.active {
-    border: 5px solid #FFFFFF;
+    border: 5px solid rgba(255, 248, 23, 0.51);
 }
 
 .naver li img {
@@ -69,10 +69,9 @@
 .sliderer {
     border: 15px solid #FFFFFF;
     border-radius: 5px;
-    height: 500px;
-    margin: 20px auto;
-    position: relative;
-    width: 800px;
+    max-height: 100%;
+    max-width: 100%;
+    display: inline-block;
 
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
@@ -88,11 +87,11 @@
 }
 
 .slidere {
-    position: absolute;
     top: 0;
-    height: 500px;
     left: 0;
-    width: 800px;
+    max-height: 100%;
+    max-width: 100%;
+    display: inline-block;
 }
 
 .slidere.ng-hide-add {

@@ -1,14 +1,26 @@
-<div class="row" ng-cloak>
-    <div ng-repeat="column in vm.columns">
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-            <div ng-repeat="product in column">
-                <tiles-product product="product" click="vm.dial(id)"></tiles-product>
+<div>
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12 col-sm-1">
+                Search:
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
+                <input type="text" ng-model="filter.name" width="100%"/>
             </div>
         </div>
     </div>
-    <div ng-hide="vm.columns && vm.columns.length">
-        <div class="col-sm-12 no-posts-here">
-            <em>The are no posts here</em>
+    <div class="well">
+        <div class="row">
+            <div ng-repeat="product in filteredItems = (vm.poducts | filter: filter)">
+                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <tiles-product product="product" click="vm.dial(id)"></tiles-product>
+                </div>
+            </div>
+            <div ng-hide="filteredItems && filteredItems.length">
+                <div class="col-sm-12 no-posts-here">
+                    <em>There are no products that meet the requirements</em>
+                </div>
+            </div>
         </div>
     </div>
 </div>

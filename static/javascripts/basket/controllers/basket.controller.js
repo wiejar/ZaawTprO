@@ -9,7 +9,7 @@
 
     BasketController.$inject = ['$scope', 'BasketService', 'ProductService'];
 
-    function BasketController($scope, BasketService, ProductService) {
+    function BasketController($scope, BasketService, ProductService, $location) {
         var vm = this;
         vm.data = BasketService.get();
         vm.productTable = [];
@@ -18,6 +18,10 @@
         vm.remove = remove;
         vm.removeAll = removeAll;
         vm.toPay = toPay;
+        vm.isSomeProduct = isSomeProduct;
+        vm.dial = dial;
+        vm.productValue = productValue;
+        vm.sum = sum;
 
         activate();
 
@@ -51,6 +55,27 @@
 
         function toPay() {
             console.log('toPay');
+        }
+
+        function isSomeProduct() {
+            return vm.productTable && vm.productTable.length;
+        }
+
+        function dial(uniqueName) {
+            $location.path('/product/' + uniqueName);
+        }
+
+        function productValue(product) {
+            return product.price * product.quantity;
+        }
+
+        function sum() {
+            var sum = 0;
+            for (var elem in vm.productTable) {
+                var product = vm.productTable[elem];
+                sum += productValue(product);
+            }
+            return sum;
         }
 
         function successGet(data, status, headers, cinfig) {

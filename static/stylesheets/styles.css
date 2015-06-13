@@ -31,6 +31,11 @@
     color: #ffffff;
 }*/
 
+.image_tiles {
+    height: 50px;
+    width: auto;
+}
+
 .normal_menu a:hover {
     background-color: #FFC107 !important;
     color: #ffffff;
