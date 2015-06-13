@@ -11,6 +11,7 @@
         'application.posts',
             'application.products',
         'application.profiles',
+            'application.order',
             'application.utils',
             'application.basket']).run(run);
     angular.module('application.routes', ['ngRoute']);

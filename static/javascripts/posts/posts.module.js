@@ -3,7 +3,7 @@
  */
 
 (function(){
-    'use strict';;
+    'use strict';
 
     angular.module('application.posts',['application.posts.controllers','application.posts.directives','application.posts.services'])
 
