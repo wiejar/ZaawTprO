@@ -3,7 +3,7 @@
 __author__ = 'Jarek'
 
 from rest_framework import serializers
-from order.models import Order, State, ProductOrder
+from orders.models import Order, State, ProductOrder
 from authentication.serializers import AccountSerializer
 from product.serializers import ProductSerializers
 

@@ -7,13 +7,13 @@
         'application.routes',
         'application.authentication',
         'application.layout',
-            'application.picture',
+        'application.picture',
         'application.posts',
-            'application.products',
+        'application.products',
         'application.profiles',
-            'application.order',
-            'application.utils',
-            'application.basket']).run(run);
+        'application.orders',
+        'application.utils',
+        'application.basket']).run(run);
     angular.module('application.routes', ['ngRoute']);
     angular.module('application.config',[]);
 

@@ -6,32 +6,32 @@
     'use strict';
 
     angular
-        .module('application.order.services')
-        .factory('Orders', Orders);
+        .module('application.orders.services')
+        .factory('Order', Order);
 
-    Posts.$inject = ['$http'];
+    Order.$inject = ['$http'];
 
-    function Orders($http){
-        var Orders ={
+    function Order($http){
+        var Order ={
             all: all,
             create: create,
             get: get
         };
 
-        return Orders;
+        return Order;
 
         function all() {
-            return $http.get('/api/v1/orders/');
+            return $http.get('/api/v1/order/');
         }
 
         function create(content){
-            return $http.post('/api/v1/orders/',{
+            return $http.post('/api/v1/order/',{
                 content: content
             });
         }
 
         function get(username){
-            return $http.get('/api/v1/accounts/'+username+'/orders/');
+            return $http.get('/api/v1/accounts/'+username+'/order/');
         }
     }
 })();

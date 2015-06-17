@@ -42,14 +42,14 @@
             controller: 'BasketController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/basket/basketPage.html'
+        }).when('/orders', {
+            controller: 'OrderController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/order/orders.html'
         }).when('/+:username', {
             controller: 'ProfileController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/profile.html'
-        }).when('/order', {
-            controller: 'OrderController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/order/orders.html'
         }).when('/', {
             controller: 'ProductsController',
             controllerAs: 'vm',

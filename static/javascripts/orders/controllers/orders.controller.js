@@ -5,21 +5,22 @@
 (function() {
     'use strict';
 
-    angular.module('application.order.controllers').controller('OrderController',OrderController);
+    angular.module('application.orders.controllers').controller('OrderController',OrderController);
 
     OrderController.$inject = ['$scope'];
 
     function OrderController($scope){
         var vm = this;
-
         vm.columns = [];
 
+
         activate();
-
         function activate(){
+            console.log("w activate");
 
-            $scope.$watchCollection(function () { return $scope.order}, render);
+            $scope.$watchCollection(function () { return $scope.orders}, render);
             $scope.$watch(function() {return $(window).width();},render);
+
         }
 
         function calculateNumberOfColumns(){
@@ -42,6 +43,7 @@
 
 
             function columnMapFn(column) {
+                console.log("columnMapFn");
                 var lengths = column.map(function (element) {
                     return element.content.length;
                 });
@@ -54,6 +56,7 @@
         }
 
         function render(current, original){
+            console.log("render");
             if(current !== original){
                 vm.columns = [];
 
@@ -66,6 +69,11 @@
                     vm.columns[column].push(current[i]);
                 }
             }
+
+        function countProperty() {
+            var width = Math.floor($(window).width() / calculateNumberOfColumns()) + "px";
+        }
+
         }
     }
 })();

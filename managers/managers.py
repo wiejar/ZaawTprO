@@ -31,7 +31,7 @@ class InheritanceQuerySetMixin(object):
                 if subclass in calculated_subclasses:
                     verified_subclasses.append(subclass)
                 else:
-                    raise ValueError('%r is not in the discovered subclasses, tried: %s' % (
+                    raise ValueError('%r is not in the discovered subclasses, tried: %orders' % (
                         subclass, ', '.join(calculated_subclasses)))
             subclasses = verified_subclasses
 
@@ -106,7 +106,7 @@ class InheritanceQuerySetMixin(object):
     def _get_ancestors_path(self, model, levels=None):
         """
         Serves as an opposite to _get_subclasses_recurse, instead walking from
-        the Model class up the Model's ancestry and constructing the desired
+        the Model class up the Model'orders ancestry and constructing the desired
         select_related string backwards.
         """
         if not issubclass(model, self.model):
@@ -264,7 +264,7 @@ class PassThroughManager(PassThroughManagerMixin, models.Manager):
     """
     Inherit from this Manager to enable you to call any methods from your
     custom QuerySet class from your manager. Simply define your QuerySet
-    class, and return an instance of it from your manager's `get_queryset`
+    class, and return an instance of it from your manager'orders `get_queryset`
     method.
 
     Alternately, if you don't need any extra methods on your manager that

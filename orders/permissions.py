@@ -7,6 +7,6 @@ class IsOwnerOfOrder(permissions.BasePermission):
         return True
         #TODO:dorobic walidacje usera
         # if request.user:
-        #     return request.user == order.owner
+        #     return request.user == orders.owner
         # else:
         #     return False

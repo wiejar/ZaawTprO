@@ -3,7 +3,7 @@
 (function(){
     'use strict';
 
-    angular.module('application.order.directives').directive('order', order);
+    angular.module('application.orders.directives').directive('order', order);
 
     function order(){
         var directives = {
@@ -13,7 +13,7 @@
             scope: {
                 order: '='
             },
-            templateUrl: 'static/templates/order/orders.html'
+            templateUrl: 'static/templates/orders/orders.html'
         };
 
         return directives;

@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'compressor', 'authentication', 'posts', 'picture', 'product', 'picture4product', 'productSpecification', 'managers', 'order'
+    'compressor', 'authentication', 'posts', 'picture', 'product', 'picture4product', 'productSpecification', 'managers', 'orders'
 )
 
 MIDDLEWARE_CLASSES = (
