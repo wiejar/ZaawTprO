@@ -26,12 +26,10 @@
             if (!Utileeer.isNotEmpty(basket)) {
                 basket = [];
             }
-            console.log(basket);
             return basket;
         }
 
         function put(basketObject) {
-            console.log(basketObject);
             $cookieStore.put('basket_application', basketObject);
         }
 

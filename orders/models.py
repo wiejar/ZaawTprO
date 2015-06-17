@@ -57,6 +57,7 @@ class Order(models.Model):
     def functionToManageState(self):
         pass
 
+
 class ProductOrder(models.Model):
     order = models.ForeignKey(Order)
     product = models.ForeignKey(Product)

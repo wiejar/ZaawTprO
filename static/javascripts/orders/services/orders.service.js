@@ -21,17 +21,17 @@
         return Order;
 
         function all() {
-            return $http.get('/api/v1/order/');
+            return $http.get('/api/v1/orders/');
         }
 
         function create(content){
-            return $http.post('/api/v1/order/',{
+            return $http.post('/api/v1/orders/', {
                 content: content
             });
         }
 
         function get(username){
-            return $http.get('/api/v1/accounts/'+username+'/order/');
+            return $http.get('/api/v1/accounts/' + username + '/orders/');
         }
     }
 })();

@@ -18,19 +18,17 @@ class OrderViewSet(viewsets.ModelViewSet):
         else:
             return (permissions.IsAuthenticated(), IsOwnerOfOrder(),)
 
-def perform_create(self, serializer):
-    instance = serializer.save(owner=self.request.user)
-    return super(OrderViewSet, self).perform_create(serializer)
+    def perform_create(self, serializer):
+        instance = serializer.save(owner=self.request.user)
+        return super(OrderViewSet, self).perform_create(serializer)  # tu nie powinno byÄ‡ w nawiasach instance ?
 
 
 class AccountOrdersViewSet(viewsets.ViewSet):
-    #TODO: zmieniæ queryset
-    #queryset = Order.objects.select_related('owner').all()
-    queryset = Order.objects.order_by('-created_at')
+    queryset = Order.objects.select_related('owner').all()
     serializer_class = OrderSerializers
 
     def list(self, request, account_username=None):
-        queryset = self.queryset.get()# .filter(owner=account_username)
+        queryset = self.queryset.filter(owner__username=account_username).all()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 

@@ -7,9 +7,9 @@
 
     angular.module('application.orders.controllers').controller('OrderController',OrderController);
 
-    OrderController.$inject = ['$scope'];
+    OrderController.$inject = ['$scope', 'Order'];
 
-    function OrderController($scope){
+    function OrderController($scope, Order) {
         var vm = this;
         vm.columns = [];
 
@@ -20,7 +20,16 @@
 
             $scope.$watchCollection(function () { return $scope.orders}, render);
             $scope.$watch(function() {return $(window).width();},render);
+            Order.all().then(suc, fail);
+            Order.get('slawek4').then(suc, fail);
+        }
 
+        function suc(data) {
+            console.log(data.data);
+        }
+
+        function fail(data) {
+            console.log('fail');
         }
 
         function calculateNumberOfColumns(){

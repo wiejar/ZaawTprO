@@ -20,8 +20,10 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = Order
 
-        fields = ('id', 'state','owner','shippingAddress', 'postalCode', 'city' , 'totalprice', 'additional_information','created_at','updated_at',)
-        read_only_fields = ('id','created_at','updated_at')
+        fields = (
+            'id', 'state', 'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information',
+            'created_at', 'last_change',)
+        read_only_fields = ('id', 'created_at', 'last_change')
 
 
 class ProductOrderSerializers(serializers.ModelSerializer):
