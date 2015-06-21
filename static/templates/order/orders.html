@@ -1,9 +1,19 @@
 Orders List<br>
-<div ng-controller="OrderController as vm">
 
-    <div class="jumbotron">
-        <h1>{{ vm.orders.owner }}</h1>
+{{ vm }}
 
-</div>
-</div>
+
+<div class="row" ng-cloak>
+    <div ng-repeat="column in vm.columns">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div ng-repeat="order in column" >
+                <post order="order"></post>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="vm.columns && vm.columns.length">
+        <div class="col-sm-12 no-posts-here">
+            <em>The are no posts here</em>
+        </div>
+    </div>
 </div>

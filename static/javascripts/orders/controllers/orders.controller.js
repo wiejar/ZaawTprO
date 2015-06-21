@@ -2,6 +2,7 @@
  * Created by Jarek on 2015-06-09.
  */
 
+
 (function() {
     'use strict';
 
@@ -16,16 +17,15 @@
 
         activate();
         function activate(){
-            console.log("w activate");
 
             $scope.$watchCollection(function () { return $scope.orders}, render);
             $scope.$watch(function() {return $(window).width();},render);
             Order.all().then(suc, fail);
-            Order.get('slawek4').then(suc, fail);
         }
 
         function suc(data) {
             console.log(data.data);
+            render(data.data, null);
         }
 
         function fail(data) {
@@ -52,7 +52,6 @@
 
 
             function columnMapFn(column) {
-                console.log("columnMapFn");
                 var lengths = column.map(function (element) {
                     return element.content.length;
                 });
@@ -65,7 +64,6 @@
         }
 
         function render(current, original){
-            console.log("render");
             if(current !== original){
                 vm.columns = [];
 

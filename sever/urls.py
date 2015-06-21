@@ -21,7 +21,7 @@ router.register(r'product', SingleProductViewSet)
 router.register(r'simpleProduct', SimpleSingleProductViewSet)
 router.register(r'orders', OrderViewSet)
 
-orders_router = routers.NestedSimpleRouter(router, r'accounts', lookup='account')
+orders_router = routers.NestedSimpleRouter(router, r'orders', lookup='account')
 orders_router.register(r'orders', AccountOrdersViewSet)
 
 accounts_router = routers.NestedSimpleRouter(router, r'accounts', lookup='account')

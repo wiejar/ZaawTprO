@@ -3,9 +3,9 @@
 (function(){
     'use strict';
 
-    angular.module('application.orders.directives').directive('order', order);
+    angular.module('application.orders.directives').directive('orders', orders);
 
-    function order(){
+    function orders(){
         var directives = {
             controller: 'OrderController',
             controllerAs: 'vm',

@@ -20,6 +20,19 @@
     right: 20px;
 }
 
+.order {}
+
+.order .order__meta {
+  font-weight: bold;
+  text-align: right;
+  padding-bottom: 19px;
+}
+
+.order .order__meta a:hover {
+  text-decoration: none;
+}
+
+
 /*.normal_menu {
     list-style-type: none;
     background-color: #FFEB3B;
