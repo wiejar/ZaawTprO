@@ -2,14 +2,16 @@
     <div class="col-sm-12">
         <div class="well">
             <div class="order">
-                <div class="order_meta">
-                    <a href="/+{{ order.id }}">
-                        #{{ order.id}}
+                <div class="number">
+                    <a href="/order/{{ order.id }}">
+                        Order #{{ order.id }}
                     </a>
                 </div>
 
                 <div class="order_content">
-                    {{ order.totalprice }}
+                    <p>Status: {{ order.state }}</p>
+                    <p>Sum: {{ order.totalprice | currency:'PLN ':2}}</p>
+                    <p>Created: {{ order.created_at | date}}</p>
                 </div>
             </div>
         </div>

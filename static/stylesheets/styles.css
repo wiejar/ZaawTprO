@@ -28,6 +28,13 @@
   padding-bottom: 19px;
 }
 
+.order .number {
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 19px;
+    font-size: large;
+}
+
 .order .order__meta a:hover {
   text-decoration: none;
 }

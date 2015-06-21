@@ -53,7 +53,7 @@
 
             function columnMapFn(column) {
                 var lengths = column.map(function (element) {
-                    return element.content.length;
+                    return element.state.length;
                 });
                 return lengths.reduce(sum, 0) * column.length;
             }
@@ -67,7 +67,7 @@
             if(current !== original){
                 vm.columns = [];
 
-                for(var i= 0;i <calculateNumberOfColumns(); i++){
+                for(var i= 0;i <=calculateNumberOfColumns(); i++){
                     vm.columns.push([]);
                 }
 
@@ -76,10 +76,6 @@
                     vm.columns[column].push(current[i]);
                 }
             }
-
-        function countProperty() {
-            var width = Math.floor($(window).width() / calculateNumberOfColumns()) + "px";
-        }
 
         }
     }

@@ -10,9 +10,9 @@
         var directive ={
             restrict: 'E',
             scope: {
-                post: '='
+                order: '='
             },
-            templateUrl: 'static/templates/orders/order.html'
+            templateUrl: 'static/templates/order/order.html'
         };
 
         return directive;
