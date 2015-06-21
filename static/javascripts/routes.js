@@ -46,6 +46,10 @@
             controller: 'OrderController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/order/orders.html'
+        }).when('/order/:id', {
+            controller: 'ProductOrderController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/order/orderDetails.html'
         }).when('/+:username', {
             controller: 'ProfileController',
             controllerAs: 'vm',

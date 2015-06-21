@@ -28,10 +28,10 @@ class OrderSerializers(serializers.ModelSerializer):
 
 class ProductOrderSerializers(serializers.ModelSerializer):
     order = OrderSerializers(many=False, read_only=False, required=True)
-    product = ProductSerializers(many=True, read_only=False, required=True)
+    #product = ProductSerializers(many=True, read_only=False, required=True)
 
     class Meta:
         model = ProductOrder
 
-        fields = ('id', 'category', 'name', 'shortDesc', 'price', 'uniqueName', 'pictures',)
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ('id', 'order',  'price', 'quantity',)
+
