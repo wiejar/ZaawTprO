@@ -32,4 +32,6 @@ class ProductOrderViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
-
+    def perform_create(self, serializer):
+        instance = serializer.save(owner=self.request.user)
+        return super(ProductOrderViewSet, self).perform_create(serializer)  # tu nie powinno być w nawiasach instance ?

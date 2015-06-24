@@ -24,9 +24,15 @@
             return $http.get('/api/v1/order/');
         }
 
-        function create(content){
-            return $http.post('/api/v1/order/', {
-                content: content
+        //TODO:zmienic na dobre parametry
+        function create(shippingAddress, postalCode, city, additional_information, totalprice, state){
+            return $http.post('/api/v1/orders/', {
+                shippingAddress: shippingAddress,
+                postalCode: postalCode,
+                city: city,
+                additional_information: additional_information,
+                totalprice: totalprice,
+                state: state
             });
         }
 

@@ -15,18 +15,8 @@
         var vm = this;
         vm.isNotEmpty = Utileeer.isNotEmpty;        
         vm.quantity = 1;
-        vm.basic = basic;
         vm.examples = 'example';
         vm.buyProduct = buyProduct;
-        
-        var basic = {
-            name: "burger",
-            pictures: [],
-            shortDesc: "kotlet z pierzynką",
-            price: 100,
-            uniqueName: 'uniqueName',
-            detailDesc: [{url: 'temp.html'}]
-        };
 
         activate();
 

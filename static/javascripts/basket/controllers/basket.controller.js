@@ -7,9 +7,9 @@
 
     angular.module('application.basket.controllers').controller('BasketController', BasketController);
 
-    BasketController.$inject = ['$scope', 'BasketService', 'ProductService', '$location'];
+    BasketController.$inject = ['$scope', 'BasketService', 'ProductService', 'Order', '$location', 'Snackbar'];
 
-    function BasketController($scope, BasketService, ProductService, $location) {
+    function BasketController($scope, BasketService, ProductService, Order, $location, Snackbar) {
         var vm = this;
         vm.data = BasketService.get();
         vm.productTable = [];
@@ -17,7 +17,7 @@
         vm.changeQuantity = changeQuantity;
         vm.remove = remove;
         vm.removeAll = removeAll;
-        vm.toPay = toPay;
+        vm.buy = buy;
         vm.isSomeProduct = isSomeProduct;
         vm.dial = dial;
         vm.productValue = productValue;
@@ -53,10 +53,6 @@
             vm.map = [];
         }
 
-        function toPay() {
-            console.log('toPay');
-        }
-
         function isSomeProduct() {
             return vm.productTable && vm.productTable.length;
         }
@@ -78,15 +74,29 @@
             return sum;
         }
 
-        function successGet(data, status, headers, cinfig) {
+        function successGet(data, status, headers, config) {
             var product = data.data;
             var elem = vm.map[product.id];
             product.quantity = vm.data[elem].quantity;
             vm.productTable[elem] = product;
         }
 
-        function failGet(data, status, headers, cinfig) {
+        function failGet(data, status, headers, config) {
             console.log(data);
+        }
+
+        function buy(shippingAddress, postalCode, city, additional_information, totalprice, state) {
+            console.log('toPay' + JSON.stringify(vm.data));
+            Order.create(shippingAddress, postalCode, city, additional_information, totalprice, state).then(createOrderSuccessFn, createOrderErrorFn);
+        }
+
+        function createOrderSuccessFn(data, status, headers, config) {
+            Snackbar.show('Success! Order created.');
+        }
+
+        function createOrderErrorFn(data, status, headers, config) {
+            $scope.$broadcast('order.created.error');
+            Snackbar.error(data.error);
         }
     }
 })();

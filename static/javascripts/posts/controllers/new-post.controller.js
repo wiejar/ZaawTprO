@@ -29,7 +29,7 @@
 
             Posts.create(vm.content).then(createPostSuccessFn, createPostErrorFn);
 
-            function createPostSuccessFn(data, status, headers, cinfig){
+            function createPostSuccessFn(data, status, headers, config){
                 Snackbar.show('Success! Post created.');
             }
 
