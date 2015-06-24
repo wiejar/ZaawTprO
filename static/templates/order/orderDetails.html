@@ -12,7 +12,7 @@
     <tbody>
 
     <tr ng-repeat="row in vm.rows">
-        <td><a href="#">Product</a></td>
+        <td><a href="/product/{{ row.product.uniqueName }}">{{ row.product.name }}</a></td>
         <td>{{ row.price | currency:'PLN ':2}}</td>
         <td>{{ row.quantity }}</td>
         <td>{{ row.quantity * row.price | currency:'PLN ':2 }}</td>
