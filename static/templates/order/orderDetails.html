@@ -1,12 +1,28 @@
-<div class="row">
-    <div class="col-sm-12">
-        <div class="well">
-            <div class="order">
-                <div class="number">
+<div class="col-sm-12 well"><a class="glyphicon glyphicon-arrow-left" style="font-size:16px"
+                               onclick="window.history.back()"></a> Order details<br></div>
+<table id="table" class="table table-hover table-mc-light-blue col-sm-12 well">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Sum</th>
+    </tr>
+    </thead>
+    <tbody>
 
-                        Order #{{ order.id }}
+    <tr ng-repeat="row in vm.rows">
+        <td><a href="#">Product</a></td>
+        <td>{{ row.price | currency:'PLN ':2}}</td>
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.quantity * row.price | currency:'PLN ':2 }}</td>
+    </tr>
+    </tbody>
+</table>
 
-            </div>
-        </div>
+
+<div ng-hide="vm.rows && vm.rows.length">
+    <div class="col-sm-12 no-posts-here">
+        <em>Wrong order ID</em>
     </div>
 </div>
