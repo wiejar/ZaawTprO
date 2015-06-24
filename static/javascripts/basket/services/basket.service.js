@@ -55,14 +55,12 @@
                 basket[ob].quantity = basket[ob].quantity + quantity;
             }
 
-            if (quantity > 1)
-               Snackbar.show(quantity + " items added to cart.");
-            else if (quantity == 1)
-                Snackbar.show(quantity + " item added to cart.");
+            if (quantity >= 1) {
+                Snackbar.show(quantity + " item(s) added to cart.");
+                put(basket);
+            }
             else
                 Snackbar.show("Invalid quantity");
-
-            put(basket);
         }
 
         function remove(productId) {
@@ -78,7 +76,6 @@
 
 
         function removeAll() {
-
             put([]);
         }
 
