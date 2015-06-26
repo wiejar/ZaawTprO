@@ -20,18 +20,19 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         instance = serializer.save(owner=self.request.user)
-        return super(OrderViewSet, self).perform_create(serializer)  # tu nie powinno być w nawiasach instance ?
+        return super(OrderViewSet, self).perform_create(serializer)
 
 
-class ProductOrderViewSet(viewsets.ViewSet):
+class ProductOrderViewSet(viewsets.ModelViewSet):
     queryset = ProductOrder.objects.all()
     serializer_class = ProductOrderSerializers
 
-    def list(self, request, account_username=None):
-        queryset = self.queryset.all()
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.AllowAny(),)
+        else:
+            return (permissions.IsAuthenticated(), IsOwnerOfOrder(),)
 
     def perform_create(self, serializer):
         instance = serializer.save(owner=self.request.user)
-        return super(ProductOrderViewSet, self).perform_create(serializer)  # tu nie powinno być w nawiasach instance ?
+        return super(ProductOrderViewSet, self).perform_create(serializer)

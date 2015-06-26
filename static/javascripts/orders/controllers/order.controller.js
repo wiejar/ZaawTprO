@@ -38,14 +38,13 @@
 
                 vm.rows = [];
                 for(var i= 0;i <=current.length-1; i++){
-                    console.log("iw pteli" + i);
                     vm.rows.push(current[i]);
                 }
                 //for(var i=0;i<current.length;i++){
                 //    vm.columns[i].push(current[i]);
                 //}
             }
-            console.log(JSON.stringify(vm.rows))
+           // console.log(JSON.stringify(vm.rows))
         }
     }
 })();

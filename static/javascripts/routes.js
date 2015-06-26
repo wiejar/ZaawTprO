@@ -42,6 +42,10 @@
             controller: 'BasketController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/basket/basketPage.html'
+        }).when('/orderparameters', {
+            controller: 'OrderController',
+            controllerAs: 'vm',
+            templateUrl: '/static/templates/order/orderParameters.html'
         }).when('/orders', {
             controller: 'OrderController',
             controllerAs: 'vm',

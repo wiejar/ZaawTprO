@@ -3,23 +3,29 @@
  */
 
 
-(function() {
+(function () {
     'use strict';
 
-    angular.module('application.orders.controllers').controller('OrderController',OrderController);
+    angular.module('application.orders.controllers').controller('OrderController', OrderController);
 
-    OrderController.$inject = ['$scope', 'Order'];
+    OrderController.$inject = ['$scope', 'Order', 'Snackbar', '$cookieStore', 'Utileeer', 'ProductOrder', 'ProductService'];
 
-    function OrderController($scope, Order) {
+    function OrderController($scope, Order, Snackbar, $cookieStore, Utileeer, ProductOrder, ProductService) {
         var vm = this;
+        vm.data = Order.get();
         vm.columns = [];
+        vm.submit = submit;
 
 
         activate();
-        function activate(){
+        function activate() {
 
-            $scope.$watchCollection(function () { return $scope.orders}, render);
-            $scope.$watch(function() {return $(window).width();},render);
+            $scope.$watchCollection(function () {
+                return $scope.orders
+            }, render);
+            $scope.$watch(function () {
+                return $(window).width();
+            }, render);
             Order.all().then(suc, fail);
         }
 
@@ -32,16 +38,16 @@
             console.log('fail');
         }
 
-        function calculateNumberOfColumns(){
+        function calculateNumberOfColumns() {
             var width = $(window).width();
 
-            if(width >= 1200){
+            if (width >= 1200) {
                 return 4;
-            }else if(width >= 992){
+            } else if (width >= 992) {
                 return 3;
-            }else if(width >= 768){
+            } else if (width >= 768) {
                 return 2;
-            }else {
+            } else {
                 return 1;
             }
         }
@@ -63,20 +69,82 @@
             }
         }
 
-        function render(current, original){
-            if(current !== original){
+        function render(current, original) {
+            if (current !== original) {
                 vm.columns = [];
 
-                for(var i= 0;i <=calculateNumberOfColumns(); i++){
+                for (var i = 0; i <= calculateNumberOfColumns(); i++) {
                     vm.columns.push([]);
                 }
 
-                for(var i=0;i<current.length;i++){
+                for (var i = 0; i < current.length; i++) {
                     var column = approximateShortestColumn();
                     vm.columns[column].push(current[i]);
                 }
             }
 
         }
+
+        function submit() {
+            function getBasket() {
+                var basket = $cookieStore.get('basket_application');
+                if (!Utileeer.isNotEmpty(basket)) {
+                    basket = [];
+                }
+                return basket;
+            }
+
+            var bas = getBasket();
+
+            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, 100/*vm.totalprice*/, 'New').then(function (dat) {
+                    var x = 0;
+                    console.log(dat.data);
+
+                    for (x = 0; x < bas.length; x++) {
+                        //console.log(i + " prID:" + bas[i].productId);
+                        //console.log("x " + x);
+                        ProductService.getSimpleProduct(bas[x].productId).then(
+                            function (data) {
+                                $scope.bas = bas;
+                                $scope.order = order;
+                                $scope.dat = dat;
+                                //console.log(data.data);
+                                for (var a = 0; a < bas.length; a++) {
+
+                                    if (bas[a].productId == data.data.id) {
+                                        console.log(data.data.id);
+                                        //console.log(dat.data);
+                                        ProductOrder.create(dat.data, data.data, bas[a].price, bas[a].quantity);
+                                    }
+                                    //console.log(bas);
+
+                                }
+                                //console.log(x);
+                            }
+                            , createOrderErrorFn);
+                    }
+
+
+                }
+
+
+                , createOrderErrorFn);
+
+        }
+
+        function createOrderSuccessFn(data, status, headers, config) {
+            Snackbar.show('Success! Order created.');
+        }
+
+
+        /**
+         * @name createPostErrorFn
+         * @desc Propogate error event and show snackbar with error message
+         */
+        function createOrderErrorFn(data, status, headers, config) {
+            $scope.$broadcast('order.created.error');
+            Snackbar.error(data.error);
+        }
+
     }
 })();

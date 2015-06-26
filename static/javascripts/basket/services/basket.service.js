@@ -33,11 +33,11 @@
             $cookieStore.put('basket_application', basketObject);
         }
 
-        function set(productId, quantity) {
+        function set(productId, quantity, price) {
             var basket = get();
             var ob = getIndexOf(productId, basket);
             if (ob == -1) {
-                basket.push({productId: productId, quantity: quantity});
+                basket.push({productId: productId, quantity: quantity, price:price});
             } else {
                 basket[ob].quantity = quantity;
             }
@@ -45,12 +45,12 @@
             put(basket);
         }
 
-        function add(productId, quantity) {
+        function add(productId, quantity, price) {
             var basket = get();
             var ob = getIndexOf(productId, basket);
 
             if (ob == -1) {
-                basket.push({productId: productId, quantity: quantity});
+                basket.push({productId: productId, quantity: quantity, price:price});
             } else {
                 basket[ob].quantity = basket[ob].quantity + quantity;
             }

@@ -26,7 +26,7 @@
         }
 
         function buyProduct() {
-            BasketService.add(vm.basic.id, vm.quantity);
+            BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
         }
 
         function successGetProduct(data, status, headers, config) {

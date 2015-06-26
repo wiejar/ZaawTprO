@@ -17,7 +17,7 @@
         vm.changeQuantity = changeQuantity;
         vm.remove = remove;
         vm.removeAll = removeAll;
-        vm.buy = buy;
+        //vm.buy = buy;
         vm.isSomeProduct = isSomeProduct;
         vm.dial = dial;
         vm.productValue = productValue;
@@ -34,8 +34,8 @@
             }
         }
 
-        function changeQuantity(productId, quantity) {
-            BasketService.set(productId, quantity);
+        function changeQuantity(productId, quantity, price) {
+            BasketService.set(productId, quantity, price);
         }
 
         function remove(productId) {
@@ -85,18 +85,18 @@
             console.log(data);
         }
 
-        function buy(shippingAddress, postalCode, city, additional_information, totalprice, state) {
-            console.log('toPay' + JSON.stringify(vm.data));
-            Order.create(shippingAddress, postalCode, city, additional_information, totalprice, state).then(createOrderSuccessFn, createOrderErrorFn);
-        }
-
-        function createOrderSuccessFn(data, status, headers, config) {
-            Snackbar.show('Success! Order created.');
-        }
-
-        function createOrderErrorFn(data, status, headers, config) {
-            $scope.$broadcast('order.created.error');
-            Snackbar.error(data.error);
-        }
+        //function buy() {
+        //    console.log('toPay' + JSON.stringify(vm.data));
+        //    //Order.create(shippingAddress, postalCode, city, additional_information, totalprice, 'New').then(createOrderSuccessFn, createOrderErrorFn);
+        //}
+        //
+        //function createOrderSuccessFn(data, status, headers, config) {
+        //    Snackbar.show('Success! Order created.');
+        //}
+        //
+        //function createOrderErrorFn(data, status, headers, config) {
+        //    $scope.$broadcast('order.created.error');
+        //    Snackbar.error(data.error);
+        //}
     }
 })();

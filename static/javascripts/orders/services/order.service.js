@@ -25,14 +25,12 @@
         }
 
         //TODO:zmienic na dobre parametry
-        function create(shippingAddress, postalCode, city, additional_information, totalprice, state){
-            return $http.post('/api/v1/orders/', {
-                shippingAddress: shippingAddress,
-                postalCode: postalCode,
-                city: city,
-                additional_information: additional_information,
-                totalprice: totalprice,
-                state: state
+        function create(order, product, price, quantity){
+            return $http.post('/api/v1/order/', {
+                order: order,
+                product: product,
+                price: price,
+                quantity: quantity
             });
         }
 
