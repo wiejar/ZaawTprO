@@ -8,9 +8,9 @@
 
     angular.module('application.orders.controllers').controller('OrderController', OrderController);
 
-    OrderController.$inject = ['$scope', 'Order', 'Snackbar', '$cookieStore', 'Utileeer', 'ProductOrder', 'ProductService'];
+    OrderController.$inject = ['$scope', 'Order', 'Snackbar', '$cookieStore', 'Utileeer', 'BasketService'];
 
-    function OrderController($scope, Order, Snackbar, $cookieStore, Utileeer, ProductOrder, ProductService) {
+    function OrderController($scope, Order, Snackbar, $cookieStore, Utileeer, BasketService) {
         var vm = this;
         vm.data = Order.get();
         vm.columns = [];
@@ -86,54 +86,23 @@
         }
 
         function submit() {
-            function getBasket() {
-                var basket = $cookieStore.get('basket_application');
-                if (!Utileeer.isNotEmpty(basket)) {
-                    basket = [];
-                }
-                return basket;
+            var bas = BasketService.get();
+
+            for (var x = 0; x < bas.length; x++) {
+                bas[x].product = bas[x].productId;
             }
 
-            var bas = getBasket();
-
-            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, 100/*vm.totalprice*/, 'New').then(function (dat) {
-                    var x = 0;
-                    console.log(dat.data);
-
-                    for (x = 0; x < bas.length; x++) {
-                        //console.log(i + " prID:" + bas[i].productId);
-                        //console.log("x " + x);
-                        ProductService.getSimpleProduct(bas[x].productId).then(
-                            function (data) {
-                                $scope.bas = bas;
-                                $scope.order = order;
-                                $scope.dat = dat;
-                                //console.log(data.data);
-                                for (var a = 0; a < bas.length; a++) {
-
-                                    if (bas[a].productId == data.data.id) {
-                                        console.log(data.data.id);
-                                        //console.log(dat.data);
-                                        ProductOrder.create(dat.data, data.data, bas[a].price, bas[a].quantity);
-                                    }
-                                    //console.log(bas);
-
-                                }
-                                //console.log(x);
-                            }
-                            , createOrderErrorFn);
-                    }
-
-
-                }
-
-
+            // reate(shippingAddress, postalCode, city, additional_information, totalprice, state)
+            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, 100/*vm.totalprice*/, 'New', bas).then(
+                createOrderSuccessFn
                 , createOrderErrorFn);
 
         }
 
         function createOrderSuccessFn(data, status, headers, config) {
+            console.log(data.data);
             Snackbar.show('Success! Order created.');
+            //BasketService.removeAll();
         }
 
 
@@ -142,6 +111,8 @@
          * @desc Propogate error event and show snackbar with error message
          */
         function createOrderErrorFn(data, status, headers, config) {
+
+            console.log(data.data);
             $scope.$broadcast('order.created.error');
             Snackbar.error(data.error);
         }

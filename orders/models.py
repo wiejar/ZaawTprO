@@ -59,7 +59,7 @@ class Order(models.Model):
 
 
 class ProductOrder(models.Model):
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, related_name='productOrder')
     product = models.ForeignKey(Product)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()

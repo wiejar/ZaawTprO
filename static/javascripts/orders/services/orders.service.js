@@ -24,14 +24,15 @@
             return $http.get('/api/v1/orders/');
         }
 
-        function create(shippingAddress, postalCode, city, additional_information, totalprice, state){
+        function create(shippingAddress, postalCode, city, additional_information, totalprice, state, productOrder) {
             return $http.post('/api/v1/orders/', {
                 shippingAddress: shippingAddress,
                 postalCode: postalCode,
                 city: city,
                 additional_information: additional_information,
                 totalprice: totalprice,
-                state: state
+                state: state,
+                productOrder: productOrder
             });
         }
 

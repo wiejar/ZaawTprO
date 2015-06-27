@@ -31,8 +31,8 @@ class ProductOrderViewSet(viewsets.ModelViewSet):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
         else:
-            return (permissions.IsAuthenticated(), IsOwnerOfOrder(),)
+            return (permissions.IsAuthenticated(), )
 
     def perform_create(self, serializer):
-        instance = serializer.save(owner=self.request.user)
+        instance = serializer.save()
         return super(ProductOrderViewSet, self).perform_create(serializer)
