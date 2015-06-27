@@ -1,0 +1,16 @@
+from product.models import Product
+from product.models import Category
+ch = Category.objects.create(name='HardDrive')
+cm = Category.objects.create(name='Monitor')
+from product.models import ProductDescription
+pdh=ProductDescription.objects.create(url='static/html/desc/hard.html')#('Prod description HardDrive')
+pdm=ProductDescription.objects.create(url='static/html/desc/hard.html')#('Prod description Monitor')
+
+ph1=Product.objects.create(category=ch,name='Seagate 80GB',uniqueName='seagate80GB',shortDesc='Seagate 80GB 5400 RPM',price=165.00, detailDesc=pdh,available=10)
+ph2=Product.objects.create(category=ch,name='Seagate 160GB',uniqueName='seagate160GB',shortDesc='Seagate 160GB 7200 RPM',price=220.00, detailDesc=pdh,available=10)
+ph3=Product.objects.create(category=ch,name='Seagate 240GB',uniqueName='seagate240GB',shortDesc='Seagate 240GB 7200 RPM',price=319.00, detailDesc=pdh,available=10)
+pm1=Product.objects.create(category=cm,name='LG 23EA63',uniqueName='LG23EA63',shortDesc='LG 23" Full HD IPS',price=589.00, detailDesc=pdm,available=10)
+pm2=Product.objects.create(category=cm,name='Samsung L19AF',uniqueName='SamsungL19AF',shortDesc='Samgung 19" 1600x900 TFT',price=370.00, detailDesc=pdm,available=10)
+pm3=Product.objects.create(category=cm,name='Samsung L27YF',uniqueName='SamsungL27YF',shortDesc='Samgung 27" FULL IPS',price=895.00, detailDesc=pdm,available=2)
+pm4=Product.objects.create(category=cm,name='Medion CRT 15',uniqueName='MedionCRT15',shortDesc='Medion CRT 15',price=180.00, detailDesc=pdm,available=10)
+
