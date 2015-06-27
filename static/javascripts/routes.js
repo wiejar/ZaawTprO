@@ -18,14 +18,6 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
-            /*    }).when('/productShow', { stare pokazywanie wszystkich produktów raczej do kosza
-             controller: 'ProductsController',
-             controllerAs: 'vm',
-             templateUrl: '/static/templates/temporary/productShow.html'*/
-            /*  }).when('/', { stary index raczej do kosza
-            controller: 'IndexController',
-            controllerAs: 'vm',
-             templateUrl: '/static/templates/layout/index.html'*/
         }).when('/+:username/settings', {
             controller: 'ProfileSettingsController',
             controllerAs: 'vm',

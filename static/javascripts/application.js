@@ -7,8 +7,6 @@
         'application.routes',
         'application.authentication',
         'application.layout',
-        'application.picture',
-        'application.posts',
         'application.products',
         'application.profiles',
         'application.orders',
