@@ -20,7 +20,7 @@
             var id = $routeParams.id;
             $scope.$watchCollection(function () { return $scope.prOrder}, render);
             $scope.$watch(function() {return $(window).width();},render);
-            ProductOrder.all().then(suc, fail);
+            ProductOrder.get(id).then(suc, fail);
         }
 
         function suc(data) {

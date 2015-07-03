@@ -5,18 +5,11 @@ from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 from orders.models import Order, ProductOrder
 from orders.serializers import OrderSerializers, ProductOrderSerializers
-from orders.permissions import IsOwnerOfOrder
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.select_related('owner').order_by('-created_at')
     serializer_class = OrderSerializers
-
-    def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:
-            return (permissions.AllowAny(),)
-        else:
-            return (permissions.IsAuthenticated(), IsOwnerOfOrder(),)
 
     def perform_create(self, serializer):
         instance = serializer.save(owner=self.request.user)
@@ -24,14 +17,14 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ProductOrderViewSet(viewsets.ModelViewSet):
-    queryset = ProductOrder.objects.all()
+    queryset = ProductOrder.objects.select_related('order')
     serializer_class = ProductOrderSerializers
+    lookup_field = 'order_id'
 
-    def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:
-            return (permissions.AllowAny(),)
-        else:
-            return (permissions.IsAuthenticated(), )
+    def list(self, request, order_pk=None):
+        queryset = self.queryset.filter(order__id=order_pk).all()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 
     def perform_create(self, serializer):
         instance = serializer.save()

@@ -35,7 +35,7 @@
         }
 
         function get(id){
-            return $http.get('/api/v1/order/' + id );
+            return $http.get('/api/v1/order/' + id  + '/');
         }
     }
 })();
