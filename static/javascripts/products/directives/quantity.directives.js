@@ -15,7 +15,6 @@
             link: function linkingFn(scope, elm, attrs, ngModelCtrl) {
                 attrs.$set('min', '1');
                 attrs.$set('max', attrs.quantity);
-                console.log(attrs.quantity);
                 if (attrs.quantity < 1) {
                     var modelGetter = $parse(attrs['ngModel']);
                     // This returns a function that lets us set the value of the ng-model binding expression:

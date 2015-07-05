@@ -84,19 +84,5 @@
         function failGet(data, status, headers, config) {
             console.log(data);
         }
-
-        //function buy() {
-        //    console.log('toPay' + JSON.stringify(vm.data));
-        //    //Order.create(shippingAddress, postalCode, city, additional_information, totalprice, 'New').then(createOrderSuccessFn, createOrderErrorFn);
-        //}
-        //
-        //function createOrderSuccessFn(data, status, headers, config) {
-        //    Snackbar.show('Success! Order created.');
-        //}
-        //
-        //function createOrderErrorFn(data, status, headers, config) {
-        //    $scope.$broadcast('order.created.error');
-        //    Snackbar.error(data.error);
-        //}
     }
 })();

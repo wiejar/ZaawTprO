@@ -30,7 +30,6 @@
         }
 
         function suc(data) {
-            console.log(data.data);
             render(data.data, null);
         }
 
@@ -88,13 +87,12 @@
 
         function submit() {
             var bas = BasketService.get();
-
+            var sum = 0;
             for (var x = 0; x < bas.length; x++) {
                 bas[x].product = bas[x].productId;
+                sum += bas[x].price * bas[x].quantity;
             }
-            //TODO: poprawiæ totalprice
-            // reate(shippingAddress, postalCode, city, additional_information, totalprice, state)
-            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, 100/*vm.totalprice*/, 'New', bas).then(
+            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, sum, 'New', bas).then(
                 createOrderSuccessFn
                 , createOrderErrorFn);
 
@@ -104,7 +102,7 @@
             console.log(data.data);
             Snackbar.show('Success! Order created.');
             //TODO: dopisaæ sleep i redirect na ordersy
-            //BasketService.removeAll();
+            BasketService.removeAll();
         }
 
 
