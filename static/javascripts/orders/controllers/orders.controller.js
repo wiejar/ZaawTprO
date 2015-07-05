@@ -72,6 +72,7 @@
         function render(current, original) {
             if (current !== original) {
                 vm.columns = [];
+                //TODO: poprawiæ render ptzy wiecej ni¿ 4 odrerach
 
                 for (var i = 0; i <= calculateNumberOfColumns(); i++) {
                     vm.columns.push([]);
@@ -91,7 +92,7 @@
             for (var x = 0; x < bas.length; x++) {
                 bas[x].product = bas[x].productId;
             }
-
+            //TODO: poprawiæ totalprice
             // reate(shippingAddress, postalCode, city, additional_information, totalprice, state)
             var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, 100/*vm.totalprice*/, 'New', bas).then(
                 createOrderSuccessFn
@@ -102,6 +103,7 @@
         function createOrderSuccessFn(data, status, headers, config) {
             console.log(data.data);
             Snackbar.show('Success! Order created.');
+            //TODO: dopisaæ sleep i redirect na ordersy
             //BasketService.removeAll();
         }
 

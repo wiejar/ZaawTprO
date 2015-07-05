@@ -1,5 +1,28 @@
 <div class="col-sm-12 well"><a class="glyphicon glyphicon-arrow-left" style="font-size:16px"
-                               onclick="window.history.back()"></a> Order details<br></div>
+                               onclick="window.history.back()"></a> Order details<br>
+    <hr class="divider">
+    <table id="table" class="table">
+        <tbody>
+        <tr>
+            <td class="table-hover table-mc-light-blue"><label class="col-lg-3 control-label">ID</label>
+                {{ vm.dict.id }}
+            </td>
+            <td><label class="col-lg-3 control-label">State</label>
+                {{ vm.dict.state }}
+            </td>
+        </tr>
+        <tr>
+            <td><label class="col-lg-3 control-label">Total</label>
+                {{ vm.dict.totalprice | currency:'PLN ':2 }}
+            </td>
+            <td><label class="col-lg-3 control-label">Last change</label>
+                {{ vm.dict.last_change  | date:'yyyy-MM-dd HH:mm:ss' }}
+            </td>
+        </tr>
+        <tbody>
+    </table>
+
+</div>
 <table id="table" class="table table-hover table-mc-light-blue col-sm-12 well">
     <thead>
     <tr>
@@ -11,7 +34,7 @@
     </thead>
     <tbody>
 
-    <tr ng-repeat="row in vm.rows">
+    <tr ng-repeat="row in vm.productOrderItems">
         <td><a href="/product/{{ row.product.uniqueName }}">{{ row.product.name }}</a></td>
         <td>{{ row.price | currency:'PLN ':2}}</td>
         <td>{{ row.quantity }}</td>
@@ -21,7 +44,7 @@
 </table>
 
 
-<div ng-hide="vm.rows && vm.rows.length">
+<div ng-hide="vm.productOrderItems && vm.productOrderItems.length">
     <div class="col-sm-12 no-posts-here">
         <em>Wrong order ID</em>
     </div>
