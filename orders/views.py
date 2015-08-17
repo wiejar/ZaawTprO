@@ -1,14 +1,14 @@
 from _ast import Or
 
 __author__ = 'Jarek'
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 from rest_framework.response import Response
 from orders.models import Order, ProductOrder
 from orders.serializers import OrderSerializers, ProductOrderSerializers
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.select_related('owner').order_by('-created_at')
+    queryset = Order.objects
     serializer_class = OrderSerializers
 
     def perform_create(self, serializer):
@@ -17,7 +17,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ProductOrderViewSet(viewsets.ModelViewSet):
-    queryset = ProductOrder.objects.select_related('order')
+    queryset = ProductOrder.objects
     serializer_class = ProductOrderSerializers
     lookup_field = 'order_id'
 

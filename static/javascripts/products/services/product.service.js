@@ -9,6 +9,11 @@
 
     ProductService.$inject = ['$http'];
 
+    /**
+     * @class ProductService
+     * @description This class manage connection to server for product data.
+     * @param $http {Object}  Service used to connect to server.
+     */
     function ProductService($http) {
         var service = {
             getByCategory: getByCategory,
@@ -16,6 +21,12 @@
             getSimpleProduct: getSimpleProduct
         };
 
+        /**
+         * @method getByCategory
+         * @description Get products by category from server
+         * @param category {String} Category name
+         * @returns {HttpPromise} All products in category
+         */
         function getByCategory(category) {
             var queryEnd = '';
             if (category != null)
@@ -23,10 +34,22 @@
             return $http.get('/api/v1/category/' + queryEnd);
         }
 
+        /**
+         * @method getProduct
+         * @description Get from server full information about product from server
+         * @param uniqueName {String} Unique Name of product
+         * @returns {HttpPromise} Data from server
+         */
         function getProduct(uniqueName) {
             return $http.get('/api/v1/product/' + uniqueName + '/');
         }
 
+        /**
+         * @method getSimpleProduct
+         * @description Get from server basic information about product
+         * @param id {number} Id of product
+         * @returns {HttpPromise} Data from server
+         */
         function getSimpleProduct(id) {
             return $http.get('/api/v1/simpleProduct/' + id + '/');
         }

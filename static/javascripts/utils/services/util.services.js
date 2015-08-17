@@ -5,17 +5,27 @@
 (function () {
     'use strict';
 
-    angular.module('application.utils.services').factory('Utileeer', util);
+    angular.module('application.utils.services').factory('Utileeer', UtilService);
 
-    function util() {
-        var util = {
+    /**
+     * @class UtilService
+     * @description This class has util method for system.
+     */
+    function UtilService() {
+        var utilService = {
             isNotEmpty: isNotEmpty
-        }
+        };
 
+        /**
+         * @method isNotEmpty
+         * @description Check if passed Object has some value.
+         * @param {Object} value Object to check.
+         * @returns {Boolean} Return true if value is not empty.
+         */
         function isNotEmpty(value) {
             return value !== undefined && value !== null && value;
         }
 
-        return util;
+        return utilService;
     }
 })();

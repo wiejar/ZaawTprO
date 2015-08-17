@@ -7,7 +7,13 @@ from picture.models import Picture
 
 
 class PictureSerializers(serializers.ModelSerializer):
+    """
+    Serializer to serialize pictures from database.
+    """
     class Meta:
-        model = Picture
+        """
+        Contain definition of PictureSerializers
+        """
 
+        model = Picture
         fields = ('id', 'url', 'desc')

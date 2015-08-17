@@ -7,11 +7,19 @@ from productSpecification.models import ProductSpecification
 
 
 class ProductSpecificationModelSerializer(serializers.ModelSerializer):
-    # convert_user = serializers.HyperlinkedIdentityField(view_name='child')
+    """
+    Serializer to serialize specification of product
+    """
     token = serializers.SerializerMethodField('get_child')
 
+    ## Delegate to Model method which returns the serialized object subclasses.
+    # @return serialized object subclasses
+    # @rtype: Object
     def get_child(self, obj):
         return obj.get_child()
 
     class Meta:
+        """
+        Contain definition of ProductSpecificationModelSerializer
+        """
         model = ProductSpecification

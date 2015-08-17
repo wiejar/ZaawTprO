@@ -9,9 +9,9 @@
 
     angular.module('application.products.controllers').controller('productPage', productPage);
 
-    productPage.$inject = ['$scope', '$sce', 'ProductService', '$routeParams', 'Utileeer', 'BasketService'];
+    productPage.$inject = ['ProductService', '$routeParams', 'Utileeer', 'BasketService'];
 
-    function productPage($scope, $sce, ProductService, $routeParams, Utileeer, BasketService) {
+    function productPage(ProductService, $routeParams, Utileeer, BasketService) {
         var vm = this;
         vm.isNotEmpty = Utileeer.isNotEmpty;        
         vm.quantity = 1;
@@ -29,7 +29,7 @@
             BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
         }
 
-        function successGetProduct(data, status, headers, config) {
+        function successGetProduct(data) {
             vm.basic = data.data;
             vm.examples = vm.basic;
             concatSpecification()
@@ -45,7 +45,7 @@
         }
 
 
-        function failGetProduct(data, status, headers, config) {
+        function failGetProduct(data) {
             vm.examples = data;
         }
     }

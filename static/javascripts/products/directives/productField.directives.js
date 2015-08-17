@@ -8,10 +8,6 @@
     angular.module('application.products.directives')
         .directive('productField', ['Utileeer', productField]);
 
-    function link(scope) {
-        scope.Utileeer = Utileeer;
-    }
-
     function productField(Utileeer) {
         return {
             restrict: 'E',
@@ -21,7 +17,7 @@
                 value: '@',
                 units: '@'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope) {
                 scope.Utileeer = Utileeer;
             }
         }

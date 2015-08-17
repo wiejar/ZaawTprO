@@ -6,14 +6,23 @@ __author__ = 'slawek'
 
 
 class ProductDescription(models.Model):
+    """
+    DataBase model of product description.
+    """
     url = models.CharField(max_length=200)
 
 
 class Category(models.Model):
+    """
+    DataBase model of product category.
+    """
     name = models.CharField(max_length=50)
 
 
 class Product(models.Model):
+    """
+    DataBase model of product.
+    """
     category = models.ForeignKey(Category, null=False, default=1)
     name = models.CharField(max_length=200)
     uniqueName = models.CharField(max_length=100, unique=True)

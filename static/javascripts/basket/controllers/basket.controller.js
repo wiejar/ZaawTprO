@@ -7,17 +7,29 @@
 
     angular.module('application.basket.controllers').controller('BasketController', BasketController);
 
-    BasketController.$inject = ['$scope', 'BasketService', 'ProductService', 'Order', '$location', 'Snackbar'];
+    BasketController.$inject = ['BasketService', 'ProductService', '$location'];
 
-    function BasketController($scope, BasketService, ProductService, Order, $location, Snackbar) {
+    /**
+     * @class BasketController
+     * @description Contains all functionality available on basket page.
+     * @param BasketService Injected service which contains method to get products putted to basket.
+     * @param ProductService Injected service which contains method to download product information.
+     * @param $location Injected service which allow to change website page during some action.
+     */
+    function BasketController(BasketService, ProductService, $location) {
         var vm = this;
-        vm.data = BasketService.get();
+
+        var data = [];
+        var map = [];
+        /**
+         * @parameter productTable
+         * @description Contains information about product in basket and quantity of selected product.
+         * @type {Array}
+         */
         vm.productTable = [];
-        vm.map = [];
         vm.changeQuantity = changeQuantity;
         vm.remove = remove;
         vm.removeAll = removeAll;
-        //vm.buy = buy;
         vm.isSomeProduct = isSomeProduct;
         vm.dial = dial;
         vm.productValue = productValue;
@@ -25,46 +37,87 @@
 
         activate();
 
+        /**
+         * @method activate
+         * @description Method execute after create controller. Download data about product in basket.
+         */
         function activate() {
-            vm.data = BasketService.get();
-            for (var elem in vm.data) {
-                var productId = vm.data[elem].productId;
-                vm.map[productId] = elem;
+            data = BasketService.get();
+            for (var elem in data) {
+                var productId = data[elem].productId;
+                map[productId] = elem;
                 ProductService.getSimpleProduct(productId).then(successGet, failGet);
             }
         }
 
+        /**
+         * @method changeQuantity
+         * @description Method, which change quantity of item in service.
+         * @param productId {number} Product Id
+         * @param quantity {number} New quantity
+         * @param price {number} Price
+         */
         function changeQuantity(productId, quantity, price) {
             BasketService.set(productId, quantity, price);
         }
 
+        /**
+         * @method remove
+         * @description Remove product from basket.
+         * @param productId {number} Product Id
+         */
         function remove(productId) {
             BasketService.remove(productId);
-            var ob = vm.map[productId];
-            vm.data.splice(ob, 1);
+            var ob = map[productId];
+            data.splice(ob, 1);
             vm.productTable.splice(ob, 1);
-            vm.map.splice(productId, 1);
+            map.splice(productId, 1);
         }
 
+        /**
+         * @method removeAll
+         * @description Remove all products from basket.
+         */
         function removeAll() {
             BasketService.removeAll();
-            vm.data = [];
+            data = [];
             vm.productTable = [];
-            vm.map = [];
+            map = [];
         }
 
+        /**
+         * @method isSomeProduct
+         * @description Return information that in basket is some product.
+         * @returns {boolean} True if in basket is some products.
+         */
         function isSomeProduct() {
             return vm.productTable && vm.productTable.length;
         }
 
+        /**
+         * @method dial
+         * @description Redirect to product page.
+         * @param uniqueName {String} Unique name of product.
+         */
         function dial(uniqueName) {
             $location.path('/product/' + uniqueName);
         }
 
+        /**
+         * @method productValue
+         * @description Count value for product.
+         * @param product {Object} Product object for it this method count value.
+         * @returns {number} Counted value.
+         */
         function productValue(product) {
             return product.price * product.quantity;
         }
 
+        /**
+         * @method sum
+         * @description Count sum of value for all products in basket.
+         * @returns {number} Counted sum of value.
+         */
         function sum() {
             var sum = 0;
             for (var elem in vm.productTable) {
@@ -74,14 +127,14 @@
             return sum;
         }
 
-        function successGet(data, status, headers, config) {
-            var product = data.data;
-            var elem = vm.map[product.id];
-            product.quantity = vm.data[elem].quantity;
+        function successGet(dataa) {
+            var product = dataa.data;
+            var elem = map[product.id];
+            product.quantity = data[elem].quantity;
             vm.productTable[elem] = product;
         }
 
-        function failGet(data, status, headers, config) {
+        function failGet(data) {
             console.log(data);
         }
     }

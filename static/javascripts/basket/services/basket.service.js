@@ -9,18 +9,29 @@
 
     BasketService.$inject = ['$cookieStore', 'Utileeer', 'Snackbar'];
 
+    /**
+     * @class BasketService
+     * @description Manage products in basket
+     * @param $cookieStore {Object} Injected service which manage cookies.
+     * @param Utileeer {Object} Injected service to check if element is not empty.
+     * @param Snackbar {Object} Injected service to show Snackbar.
+     */
     function BasketService($cookieStore, Utileeer, Snackbar) {
         var BasketService = {
             get: get,
-            put: put,
             add: add,
             set: set,
             remove: remove,
             removeAll: removeAll
-        }
+        };
 
         return BasketService;
 
+        /**
+         * @method get
+         * @description Get products in basket.
+         * @returns {Object} Products in basket.
+         */
         function get() {
             var basket = $cookieStore.get('basket_application');
             if (!Utileeer.isNotEmpty(basket)) {
@@ -33,6 +44,13 @@
             $cookieStore.put('basket_application', basketObject);
         }
 
+        /**
+         * @method set
+         * @description Set product in basket or update it quantity and price if it exist in basket.
+         * @param productId {number} Product Id
+         * @param quantity {number} Quantity
+         * @param price {number} Price
+         */
         function set(productId, quantity, price) {
             var basket = get();
             var ob = getIndexOf(productId, basket);
@@ -45,6 +63,13 @@
             put(basket);
         }
 
+        /**
+         * @method add
+         * @description Add product to basket or update it quantity and price if it exist in basket.
+         * @param productId {number} Product Id
+         * @param quantity {number} Quantity
+         * @param price {number} Price
+         */
         function add(productId, quantity, price) {
             var basket = get();
             var ob = getIndexOf(productId, basket);
@@ -60,9 +85,14 @@
                 put(basket);
             }
             else
-                Snackbar.show("Invalid quantity");
+                Snackbar.error("Invalid quantity");
         }
 
+        /**
+         * @method remove
+         * @description Remove single product from basket
+         * @param productId Product Id to remove from cache.
+         */
         function remove(productId) {
             var basket = get();
             var ob = getIndexOf(productId, basket);
@@ -74,7 +104,10 @@
             put(basket);
         }
 
-
+        /**
+         * @method removeAll
+         * @description Clear all products from basket.
+         */
         function removeAll() {
             put([]);
         }

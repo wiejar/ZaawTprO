@@ -5,7 +5,6 @@ __author__ = 'Jarek'
 from rest_framework import serializers
 from orders.models import Order, State, ProductOrder
 from authentication.serializers import AccountSerializer
-from product.serializers import ProductSerializers
 from product.models import Product
 
 
@@ -17,7 +16,7 @@ class StateSerializers(serializers.ModelSerializer):
 
 class ProductOrderSerializers(serializers.ModelSerializer):
     order = serializers.PrimaryKeyRelatedField(queryset=Order.objects.all(), required=False)
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
 
     class Meta:
         model = ProductOrder

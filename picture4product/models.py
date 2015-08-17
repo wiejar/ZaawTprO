@@ -8,7 +8,9 @@ from picture.models import Picture
 from product.models import Product
 
 
-# Create your models here.
 class Picture4Product(models.Model):
+    """
+    DataBase model of relation picture to product.
+    """
     picture = models.ForeignKey(Picture)
     product = models.ForeignKey(Product, related_name='pictures')

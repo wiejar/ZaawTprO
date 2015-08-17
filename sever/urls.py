@@ -4,8 +4,7 @@ from rest_framework_nested import routers
 from orders.views import OrderViewSet, ProductOrderViewSet
 from authentication.views import AccountViewSet, LoginView, LogoutView
 from picture.views import PictureViewSet
-from product.views import CategoryProductViewSet, ProductViewSet, SingleProductViewSet, CategoriesViewSet, \
-    SimpleSingleProductViewSet
+from product.views import CategoryProductViewSet, ProductViewSet, SingleProductViewSet, CategoriesViewSet
 
 
 from sever.views import IndexView
@@ -16,7 +15,7 @@ router.register(r'picture', PictureViewSet)
 router.register(r'category', ProductViewSet)
 router.register(r'categories', CategoriesViewSet)
 router.register(r'product', SingleProductViewSet)
-router.register(r'simpleProduct', SimpleSingleProductViewSet)
+router.register(r'simpleProduct', ProductViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'order', ProductOrderViewSet)
 
