@@ -6,9 +6,14 @@
     'use strict';
 
     angular.module('application.products.directives')
-        .directive('tilesProduct', tilesProduct);
+        .directive('tilesProduct', TilesProduct);
 
-    function tilesProduct() {
+    /**
+     * @method TilesProduct
+     * @description Contain definition od tiles directive. This directive is element and has two arguments product (definition of product) and click (action on click on product).
+     * @returns {Object} Definition of directive.
+     */
+    function TilesProduct() {
         var directive = {
             restrict: 'E',
             scope: {

@@ -6,9 +6,14 @@
     'use strict';
 
     angular.module('application.products.directives')
-        .directive('quantity', ['$parse', quantity]);
+        .directive('quantity', ['$parse', Quantity]);
 
-    function quantity($parse) {
+    /**
+     * @method Quantity
+     * @description Contain definition od Quantity directive. This directive is attribute. Check if value in model is greater than 1 and less than  available quantity. If available quantity is below 1 this directive disable element.
+     * @returns {Object} Definition of directive.
+     */
+    function Quantity($parse) {
         return {
             restrict: 'A',
             require: '?ngModel',

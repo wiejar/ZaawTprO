@@ -6,9 +6,14 @@
     'use strict';
 
     angular.module('application.products.directives')
-        .directive('priceField', priceField);
+        .directive('priceField', PriceField);
 
-    function priceField() {
+    /**
+     * @method PriceField
+     * @description Contain definition od Price field directive. This directive is element. It has 1 parameters : value.
+     * @returns {Object} Definition of directive.
+     */
+    function PriceField() {
         return {
             restrict: 'E',
             templateUrl: 'static/templates/products/priceField.html',

@@ -7,31 +7,61 @@
 (function () {
     'use strict';
 
-    angular.module('application.products.controllers').controller('productPage', productPage);
+    angular.module('application.products.controllers').controller('productPage', ProductPageController);
 
-    productPage.$inject = ['ProductService', '$routeParams', 'Utileeer', 'BasketService'];
+    ProductPageController.$inject = ['ProductService', '$routeParams', 'Utileeer', 'BasketService'];
 
-    function productPage(ProductService, $routeParams, Utileeer, BasketService) {
+    /**
+     * @class ProductPageController
+     * @description Contains all functionality available on product page.
+     * @param ProductService Injected service which allow download data about products.
+     * @param $routeParams Injected service which allow get data from url.
+     * @param Utileeer Injected util service.
+     * @param BasketService Injected service which allow add product into basket.
+     */
+    function ProductPageController(ProductService, $routeParams, Utileeer, BasketService) {
         var vm = this;
-        vm.isNotEmpty = Utileeer.isNotEmpty;        
+        vm.isNotEmpty = Utileeer.isNotEmpty;
+        /**
+         * @properties quantity
+         * @description number of product which user want buy.
+         * @type {number}
+         */
         vm.quantity = 1;
-        vm.examples = 'example';
+        /**
+         * @properties basic
+         * @description Basic information about product.
+         * @type {Object}
+         */
+        vm.basic = {};
+        /**
+         * @properties specification
+         * @description Specification of product.
+         * @type {Object}
+         */
+        vm.specification = {};
         vm.buyProduct = buyProduct;
 
         activate();
-
+        /**
+         * @method activate
+         * @description Method execute after create controller. Download data about selected product.
+         */
         function activate() {
             var name = $routeParams.productName;
             ProductService.getProduct(name).then(successGetProduct, failGetProduct);
         }
 
+        /**
+         * @method buyProduct
+         * @description Add product to basket.
+         */
         function buyProduct() {
             BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
         }
 
         function successGetProduct(data) {
             vm.basic = data.data;
-            vm.examples = vm.basic;
             concatSpecification()
         }
 
@@ -40,13 +70,12 @@
             for (var tab in vm.basic.productSpecification) {
                 jQuery.extend(allSpecification, vm.basic.productSpecification[tab].token[0].fields);
             }
-
-            vm.basic.allSpecification = allSpecification;
+            vm.basic.productSpecification = {};
+            vm.specification = allSpecification;
         }
 
-
         function failGetProduct(data) {
-            vm.examples = data;
+            console.log(data);
         }
     }
 })();

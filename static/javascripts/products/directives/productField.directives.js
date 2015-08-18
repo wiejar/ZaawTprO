@@ -6,9 +6,16 @@
     'use strict';
 
     angular.module('application.products.directives')
-        .directive('productField', ['Utileeer', productField]);
+        .directive('productField', ['Utileeer', ProductField]);
 
-    function productField(Utileeer) {
+    /**
+     * @method ProductField
+     * @description Contain definition od Product field directive.
+     * This directive is element. It has 3 parameters : name, value, units.
+     * Represent single information about product.
+     * @returns {Object} Definition of directive.
+     */
+    function ProductField(Utileeer) {
         return {
             restrict: 'E',
             templateUrl: 'static/templates/products/productField.html',
