@@ -15,7 +15,11 @@ class AccountManager(BaseUserManager):
 
         account = self.model(
             email=self.normalize_email(email),
-            username=kwargs.get('username')
+            username=kwargs.get('username'),
+            phone_number=kwargs.get('phone_number'),
+            company_name=kwargs.get('company_name'),
+            tax_identification_number=kwargs.get('tax_identification_number')
+
         )
 
         account.set_password(password)
@@ -38,8 +42,10 @@ class Account(AbstractBaseUser):
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
-
+    phone_number = models.CharField(max_length=9, blank=True)
     is_admin = models.BooleanField(default=False)
+    company_name = models.CharField(max_length=40, blank=True)
+    tax_identification_number = models.CharField(max_length=10, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

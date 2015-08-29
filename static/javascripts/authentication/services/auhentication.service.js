@@ -23,11 +23,14 @@
 
         return Authentication;
 
-        function register(email, password, username) {
+        function register(email, password, username, phone_number, company_name, tax_identification_number) {
             return $http.post('/api/v1/accounts/', {
                 username: username,
                 password: password,
-                email: email
+                email: email,
+                phone_number: phone_number,
+                company_name: company_name,
+                tax_identification_number: tax_identification_number
             }).then(registerSuccess, registerFailure);
 
             function registerSuccess(data, status, headers, config) {

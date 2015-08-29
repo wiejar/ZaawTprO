@@ -1,11 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+    function myFunction() {
+        document.getElementById("identity").style.visibility = "visible";
+        document.getElementById("identity2").style.visibility = "visible";
+}
+    function myFunction2(){
+        document.getElementById("identity").style.visibility = "hidden";
+        document.getElementById("identity2").style.visibility = "hidden";
+    }
+</script>
+
+</body>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <h1>Register</h1>
 
         <div class="well">
+            <form action="">
+                <input type="radio" name="type" value="privatePerson"
+                onclick=myFunction2() checked>Private Person<br>
+                <input type="radio" name="type" value="Company"
+                onclick=myFunction()>Company
+            </form>
+                <br>
+            <p>Fields with * are required.</p>
             <form role="form" ng-submit="vm.register()">
                 <div class="form-group">
-                    <label for="register__email">Email</label>
+                    <label for="register__email">Email<span class="mandatory">*</span></label>
                     <input type="email" class="form-control" id="register__email"
                            ng-model="vm.email" placeholder="ex. john@gmail.com">
                 </div>
@@ -17,9 +41,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="register__password">Password</label>
+                    <label for="register__password">Password<span class="mandatory">*</span></label>
                     <input type="password" class="form-control" id="register__password"
                            ng-model="vm.password" placeholder="ex. password">
+                </div>
+
+                <div class="form-group">
+                    <label for="register__phone_number">Phone Number<span class="mandatory">*</span></label>
+                    <input type="text" class="form-control" id="register__phone_number"
+                           ng-model="vm.phone_number" placeholder="ex. PhoneNumber">
+                </div>
+
+                <div id="identity" class="form-group" style="visibility: hidden">
+                    <label for="register__company_name">Company Name</label>
+                    <input type="text" class="form-control" id="register__company_name"
+                           ng-model="vm.company_name" placeholder="ex.Name of your company">
+                </div>
+
+                <div id="identity2" class="form-group" style="visibility: hidden">
+                    <label for="register__tax_identification_number">Tax Identification Number</label>
+                    <input type="text" class="form-control" id="register__tax_identification_number"
+                           ng-model="vm.tax_identification_number" placeholder="ex.Type in your TIN">
                 </div>
 
                 <div class="form-group">
@@ -29,3 +71,4 @@
         </div>
     </div>
 </div>
+<html>

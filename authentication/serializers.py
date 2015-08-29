@@ -15,7 +15,7 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = (
         'id', 'email', 'username', 'created_at', 'update_at', 'first_name', 'last_name', 'password',
-        'confirm_password',)
+        'confirm_password', 'phone_number', 'company_name', 'tax_identification_number')
         read_only_fields = ('created_at', 'update_at',)
 
         def create(self, validated_data):
