@@ -16,10 +16,10 @@
 
         activate();
 
-        function register(){
-            Authentication.register(vm.email,vm.password, vm.username, vm.phone_number,vm.company_name, vm.tax_identification_number);
-
-        }
+            function register() {
+                Authentication.register(vm.email, vm.password, vm.username, vm.phone_number,
+                                        vm.company_name, vm.tax_identification_number);
+            }
 
         function activate(){
             if(Authentication.isAuthenticated()){

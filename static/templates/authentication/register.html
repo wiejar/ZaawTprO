@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 <script>
     function myFunction() {
-        document.getElementById("identity").style.visibility = "visible";
-        document.getElementById("identity2").style.visibility = "visible";
+        document.getElementById("identity").style.display = "none";
+        document.getElementById("identity2").style.display = "none";
 }
     function myFunction2(){
-        document.getElementById("identity").style.visibility = "hidden";
-        document.getElementById("identity2").style.visibility = "hidden";
+        document.getElementById("identity").style.display = "block";
+        document.getElementById("identity2").style.display = "block";
     }
 </script>
-
 </body>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -21,9 +19,9 @@
         <div class="well">
             <form action="">
                 <input type="radio" name="type" value="privatePerson"
-                onclick=myFunction2() checked>Private Person<br>
+                onclick=myFunction() checked>Private Person<br>
                 <input type="radio" name="type" value="Company"
-                onclick=myFunction()>Company
+                onclick=myFunction2()>Company
             </form>
                 <br>
             <p>Fields with * are required.</p>
@@ -52,13 +50,13 @@
                            ng-model="vm.phone_number" placeholder="ex. PhoneNumber">
                 </div>
 
-                <div id="identity" class="form-group" style="visibility: hidden">
+                <div id="identity" class="form-group" style="display: none">
                     <label for="register__company_name">Company Name</label>
                     <input type="text" class="form-control" id="register__company_name"
                            ng-model="vm.company_name" placeholder="ex.Name of your company">
                 </div>
 
-                <div id="identity2" class="form-group" style="visibility: hidden">
+                <div id="identity2" class="form-group" style="display: none">
                     <label for="register__tax_identification_number">Tax Identification Number</label>
                     <input type="text" class="form-control" id="register__tax_identification_number"
                            ng-model="vm.tax_identification_number" placeholder="ex.Type in your TIN">

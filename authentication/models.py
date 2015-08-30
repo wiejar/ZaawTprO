@@ -13,11 +13,14 @@ class AccountManager(BaseUserManager):
         if not kwargs.get('username'):
             raise ValueError('Users must have a valid username.')
 
+        if not kwargs.get('company_name'):
+            company_name = '0'
+
         account = self.model(
             email=self.normalize_email(email),
             username=kwargs.get('username'),
             phone_number=kwargs.get('phone_number'),
-            company_name=kwargs.get('company_name'),
+            company_name = kwargs.get('company_name'),
             tax_identification_number=kwargs.get('tax_identification_number')
 
         )
@@ -28,7 +31,7 @@ class AccountManager(BaseUserManager):
         return account
 
     def create_superuser(self, email, password=None, **kwargs):
-        account = self.create_user(email,password,**kwargs)
+        account = self.create_user(email, password, **kwargs)
 
         account.is_admin = True
         account.save()
