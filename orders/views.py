@@ -4,9 +4,10 @@ __author__ = 'Jarek'
 from rest_framework import viewsets
 from rest_framework.response import Response
 from orders.models import Order, ProductOrder
-from orders.serializers import OrderSerializers, ProductOrderSerializers
+from orders.serializers import OrderSerializers, ProductOrderSerializers, AdminOrderSerializers
 from sever.util import get_user_param_from_request_or_none
 from product.views import BaseProductViewSet
+from sever.Singleton import Singleton
 
 
 class OrderViewSet(BaseProductViewSet):
@@ -20,6 +21,28 @@ class OrderViewSet(BaseProductViewSet):
     def list(self, request):
         user_id = get_user_param_from_request_or_none(request, 'id')
         queryset = self.queryset.filter(owner=user_id).all().order_by('-created_at')
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+
+class AdminOrderView(viewsets.ModelViewSet):
+    queryset = Order.objects
+    serializer_class = AdminOrderSerializers
+    lookup_field = 'id'
+
+    def perform_update(self, serializer):
+        serializer.validated_data['state'] = Singleton.instance.get_next_state(serializer.data['state'])
+        instance = serializer.save()
+
+
+    def list(self, request):
+        is_admin = get_user_param_from_request_or_none(request, 'is_admin')
+        if is_admin:
+            queryset = self.queryset.all().order_by('-created_at')
+        else:
+            user_id = get_user_param_from_request_or_none(request, 'id')
+            queryset = self.queryset.filter(owner=user_id).all().order_by('-created_at')
+
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 

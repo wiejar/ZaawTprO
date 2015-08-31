@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url, include
 from rest_framework_nested import routers
 
-from orders.views import OrderViewSet, ProductOrderViewSet
+from orders.views import OrderViewSet, ProductOrderViewSet, AdminOrderView
 from authentication.views import AccountViewSet, LoginView, LogoutView
 from picture.views import PictureViewSet
 from product.views import CategoryProductViewSet, ProductViewSet, SingleProductViewSet, CategoriesViewSet
@@ -18,6 +18,7 @@ router.register(r'product', SingleProductViewSet)
 router.register(r'simpleProduct', ProductViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'order', ProductOrderViewSet)
+router.register(r'ordersAdmin', AdminOrderView)
 
 product_router = routers.NestedSimpleRouter(router, r'category', lookup='category')
 product_router.register(r'category', CategoryProductViewSet)

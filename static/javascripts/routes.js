@@ -18,7 +18,7 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
-        }).when('/+:username/settings', {
+        }).when('/settings/:username', {
             controller: 'ProfileSettingsController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/profiles/settings.html'
@@ -46,14 +46,10 @@
             controller: 'ProductOrderController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/order/orderDetails.html'
-        }).when('/+:username', {
-            controller: 'ProfileController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/profiles/profile.html'
-        }).when('/', {
+        }).when('/home', {
             controller: 'ProductsController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/temporary/productShow.html'
-        }).otherwise('/');
+        }).otherwise('/home');
     }
 })();

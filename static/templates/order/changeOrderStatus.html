@@ -1,0 +1,23 @@
+<table id="table" class="table table-hover table-mc-light-blue col-sm-12 well">
+    <thead>
+    <tr>
+        <th>Order</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Next Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat="row in vm.data">
+        <td><a href="/order/{{ row.id }}">Order #{{ row.id }}</a></td>
+        <td>{{ row.state }}</td>
+        <td>
+            <price-field value="row.totalprice"></price-field>
+        </td>
+        <td>
+            <button class="btn btn-success" ng-click="vm.next(row)">Next Status</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

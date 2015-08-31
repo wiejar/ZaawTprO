@@ -3,16 +3,10 @@
 __author__ = 'Jarek'
 
 from rest_framework import serializers
-from orders.models import Order, State, ProductOrder
+from orders.models import Order, ProductOrder
 from authentication.serializers import AccountSerializer
 from product.models import Product
 from product.serializers import BaseProductSerializer
-
-
-class StateSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = State
-        fields = ('id', 'name',)
 
 
 class ProductOrderSerializers(serializers.ModelSerializer):
@@ -23,6 +17,23 @@ class ProductOrderSerializers(serializers.ModelSerializer):
         model = ProductOrder
 
         fields = ('id', 'order', 'product',  'price', 'quantity')
+
+
+class AdminOrderSerializers(BaseProductSerializer):
+    class Meta:
+        model = Order
+
+        fields = (
+            'id', 'state', 'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information',
+            'created_at', 'last_change', 'productOrder',)
+        read_only_fields = (
+            'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information', 'created_at',
+            'last_change', 'productOrder',)
+
+    def update(self, instance, validated_data):
+        instance.state = validated_data['state']
+        instance.save()
+        return instance
 
 
 class OrderSerializers(BaseProductSerializer):

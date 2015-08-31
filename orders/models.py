@@ -4,41 +4,6 @@ __author__ = 'Jarek'
 from django.db import models
 from authentication.models import Account
 from product.models import Product
-from abc import ABCMeta
-
-
-class StateModel(models.Model):
-    pass#name = models.CharField(max_length=50)
-
-
-class State(metaclass=ABCMeta):
-    pass
-
-class StateAccepted(State):
-    pass
-
-class StateWaitingForPayment(State):
-    pass
-
-
-class StateError(State):
-    pass
-
-
-class StatePaymentSuccess(State):
-    pass
-
-
-class StateProcessing(State):
-    pass
-
-
-class StateSent(State):
-    pass
-
-
-class StateCancelled(State):
-    pass
 
 
 class Order(models.Model):
