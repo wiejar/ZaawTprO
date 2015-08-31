@@ -22,7 +22,16 @@
         };
 
         return Authentication;
-
+        /**
+         * @method register
+         * @description Method execute while registrating new user.
+         * @param vm.email New user's email.
+         * @param vm.password New user's password.
+         * @param vm.username New user's username.
+         * @param vm.phone_number New user's phone number.
+         * @param vm.company_name Company name of new user (optional).
+         * @param vm.tax_identification_number Tax identification number of new user (optional).
+         */
         function register(email, password, username, phone_number, company_name, tax_identification_number) {
             return $http.post('/api/v1/accounts/', {
                 username: username,
@@ -31,8 +40,6 @@
                 phone_number: phone_number,
                 company_name: company_name,
                 tax_identification_number: tax_identification_number
-
-
             }).then(registerSuccess, registerFailure);
 
             function registerSuccess(data, status, headers, config) {

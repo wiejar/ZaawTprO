@@ -13,16 +13,12 @@ class AccountManager(BaseUserManager):
         if not kwargs.get('username'):
             raise ValueError('Users must have a valid username.')
 
-        if not kwargs.get('company_name'):
-            company_name = '0'
-
         account = self.model(
             email=self.normalize_email(email),
             username=kwargs.get('username'),
             phone_number=kwargs.get('phone_number'),
             company_name = kwargs.get('company_name'),
             tax_identification_number=kwargs.get('tax_identification_number')
-
         )
 
         account.set_password(password)
@@ -40,6 +36,9 @@ class AccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
+    """
+    DataBase model: data about registrating user.
+    """
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
 
