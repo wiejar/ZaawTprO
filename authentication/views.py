@@ -28,6 +28,21 @@ class AccountViewSet(viewsets.ModelViewSet):
 
         return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+            instance = serializer.instance
+            instance.save(update_fields=['email'])
+
+            validated_data = serializer.validated_data
+            password = validated_data.get('password', None)
+            confirm_password = validated_data.get('confirm_password', None)
+
+            if password and confirm_password and password == confirm_password:
+                instance.set_password(password)
+                instance.save(update_fields=['password'])
+
+            serializer.update_hash(instance)
+
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 

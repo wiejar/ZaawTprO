@@ -21,7 +21,7 @@
 
         function activate() {
             var authenticatedAccount = Authentication.getAuthenticatedAccount();
-            var username = $routeParams.username.substr(1);
+            var username = $routeParams.username;
 
             if (!authenticatedAccount || authenticatedAccount.username != username) {
                 //$location.url('/');
