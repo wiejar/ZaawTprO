@@ -14,8 +14,7 @@
     function Order($http){
         var Order ={
             all: all,
-            create: create,
-            get: get
+            create: create
         };
 
         return Order;
@@ -34,10 +33,6 @@
                 state: state,
                 productOrder: productOrder
             });
-        }
-
-        function get(username){
-            return $http.get('/api/v1/accounts/' + username + '/orders/');
         }
     }
 })();

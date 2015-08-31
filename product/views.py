@@ -4,34 +4,43 @@ __author__ = 'slawek'
 
 from rest_framework import viewsets
 from rest_framework.response import Response
+from abc import ABCMeta
 
 from product.models import Product, Category
 from product.serializers import ProductSerializers, FullProductSerializers, CategorySerializers
+from sever.singleton import Singleton
 
 
-class SingleProductViewSet(viewsets.ModelViewSet):
+class BaseProductViewSet(viewsets.ModelViewSet):
+    __metaclass_ = ABCMeta
+    queryset = Product.objects.all()
+
+    def get_serializer_class(self):
+        serializer = super(BaseProductViewSet, self).get_serializer_class()
+        serializer.calculator = Singleton().get_calculator(self.request)
+        return serializer
+
+
+class SingleProductViewSet(BaseProductViewSet):
     """
     View - get full data about single product.
     Product is selecting on the base 'uniqueName' field.
     """
     lookup_field = 'uniqueName'
-    queryset = Product.objects.all()
     serializer_class = FullProductSerializers
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(BaseProductViewSet):
     """
     View - get simple data about products.
     """
-    queryset = Product.objects.all()
     serializer_class = ProductSerializers
 
 
-class CategoryProductViewSet(viewsets.ModelViewSet):
+class CategoryProductViewSet(BaseProductViewSet):
     """
     View - get simple data about products related to selected category.
     """
-    queryset = Product.objects.all()
     serializer_class = ProductSerializers
 
     ## This method is used to return serialized list of project objects ]

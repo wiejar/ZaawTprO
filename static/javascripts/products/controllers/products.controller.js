@@ -7,7 +7,7 @@
 
     angular.module('application.products.controllers').controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['$scope', 'ProductService', '$location', '$routeParams'];
+    ProductsController.$inject = ['ProductService', '$location', '$routeParams'];
 
     /**
      * @class ProductsController

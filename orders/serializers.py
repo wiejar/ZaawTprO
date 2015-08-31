@@ -6,6 +6,7 @@ from rest_framework import serializers
 from orders.models import Order, State, ProductOrder
 from authentication.serializers import AccountSerializer
 from product.models import Product
+from product.serializers import BaseProductSerializer
 
 
 class StateSerializers(serializers.ModelSerializer):
@@ -24,7 +25,7 @@ class ProductOrderSerializers(serializers.ModelSerializer):
         fields = ('id', 'order', 'product',  'price', 'quantity')
 
 
-class OrderSerializers(serializers.ModelSerializer):
+class OrderSerializers(BaseProductSerializer):
     owner = AccountSerializer(required=False, read_only=False)
     productOrder = ProductOrderSerializers(many=True)
 
@@ -41,6 +42,7 @@ class OrderSerializers(serializers.ModelSerializer):
         order = Order.objects.create(**validated_data)
 
         for productOrders in productOrder_data:
+            productOrders['price'] = productOrders['price']
             ProductOrder.objects.create(order=order, **productOrders)
         return order
 
@@ -51,7 +53,7 @@ class OrderSerializers(serializers.ModelSerializer):
         instance.city = validated_data['city']
         instance.totalprice = validated_data['totalprice']
         instance.additional_information = validated_data['additional_information']
-        instance.save();
+        instance.save()
 
         if id in validated_data:
 

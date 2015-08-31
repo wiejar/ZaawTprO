@@ -8,28 +8,32 @@
 
     angular.module('application.orders.controllers').controller('OrderController', OrderController);
 
-    OrderController.$inject = ['$scope', 'Order', 'Snackbar', '$cookieStore', 'Utileeer', 'BasketService'];
+    OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService'];
 
-    function OrderController($scope, Order, Snackbar, $cookieStore, Utileeer, BasketService) {
+    function OrderController($scope, Order, Snackbar, BasketService) {
         var vm = this;
-        vm.data = Order.get();
+        vm.data = [];
         vm.columns = [];
         vm.submit = submit;
-
 
         activate();
         function activate() {
 
             $scope.$watchCollection(function () {
                 return $scope.orders
-            }, render);
+            }, simpleRender);
             $scope.$watch(function () {
                 return $(window).width();
-            }, render);
+            }, simpleRender);
             Order.all().then(suc, fail);
         }
 
+        function simpleRender() {
+            render(vm.data, null);
+        }
+
         function suc(data) {
+            vm.data = data.data;
             render(data.data, null);
         }
 
@@ -71,9 +75,8 @@
         function render(current, original) {
             if (current !== original) {
                 vm.columns = [];
-                //TODO: poprawiæ render ptzy wiecej ni¿ 4 odrerach
 
-                for (var i = 0; i <= calculateNumberOfColumns(); i++) {
+                for (var i = 0; i < calculateNumberOfColumns(); i++) {
                     vm.columns.push([]);
                 }
 
@@ -101,7 +104,7 @@
         function createOrderSuccessFn(data, status, headers, config) {
             console.log(data.data);
             Snackbar.show('Success! Order created.');
-            //TODO: dopisaæ sleep i redirect na ordersy
+            //TODO: dopisaï¿½ sleep i redirect na ordersy
             BasketService.removeAll();
         }
 

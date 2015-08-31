@@ -16,6 +16,9 @@
               <a class="glyphicon glyphicon-shopping-cart" style="font-size:25px; " href="/basket">
               </a>
           </li>
+          {% if user.is_admin %}
+              <li>lol</li>
+          {% endif %}
         {% if user.is_authenticated %}
           <li><a href="/orders">My Orders</a></li>
           <li><a href="/+{{ user.username }}/settings">Settings</a></li>
