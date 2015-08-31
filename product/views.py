@@ -8,7 +8,7 @@ from abc import ABCMeta
 
 from product.models import Product, Category
 from product.serializers import ProductSerializers, FullProductSerializers, CategorySerializers
-from sever.singleton import Singleton
+from sever.Singleton import Singleton
 
 
 class BaseProductViewSet(viewsets.ModelViewSet):
