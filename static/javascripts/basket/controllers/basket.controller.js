@@ -134,8 +134,8 @@
             vm.productTable[elem] = product;
         }
 
-        function failGet(data) {
-            console.log(data);
+        function failGet() {
+            //Snackbar.error('Get information about product failed');
         }
     }
 })();

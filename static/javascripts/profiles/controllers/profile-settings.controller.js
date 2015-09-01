@@ -24,21 +24,20 @@
             var username = $routeParams.username;
 
             if (!authenticatedAccount || authenticatedAccount.username != username) {
-                //$location.url('/');
                 Snackbar.error('You are not authorised to see this page');
+                //$location.url('/');
             }
 
             Profile.get(username).then(profileSuccessFn, profileErrorFn);
 
-            function profileSuccessFn(data, status, headers, config) {
+            function profileSuccessFn(data) {
                 vm.profile = data.data;
-                console.log(vm.profile);
             }
 
-            function profileErrorFn(data, status, headers, config) {
+            function profileErrorFn(data) {
                 vm.profile = data.data;
-                //$location.url('/');
                 Snackbar.error('That user does not exist');
+                //$location.url('/');
             }
         }
 
@@ -46,14 +45,14 @@
             Profile.destroy(vm.profile.username)
                 .then(profileSuccessFn, profileErrorFn);
 
-            function profileSuccessFn(data, status, headers, config) {
+            function profileSuccessFn() {
                 Authentication.unauthenticated();
                 window.location = '/';
 
                 Snackbar.show('Your account has been deleted.');
             }
 
-            function profileErrorFn(data, status, headers, config) {
+            function profileErrorFn(data) {
                 Snackbar.error(data.error);
             }
         }
@@ -62,11 +61,11 @@
             Profile.update(vm.profile)
                 .then(profileSuccessFn, profileErrorFn);
 
-            function profileSuccessFn(data, status, headers, config) {
+            function profileSuccessFn() {
                 Snackbar.show('Your account has been updated.');
             }
 
-            function profileErrorFn(data, status, headers, config) {
+            function profileErrorFn(data) {
                 Snackbar.error(data.error);
             }
         }

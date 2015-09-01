@@ -7,32 +7,29 @@
 
     angular.module('application.layout.controllers').controller('LeftMenuController', LeftMenuController);
 
-    LeftMenuController.$inject = ['$scope', 'CategoryService', '$location']
+    LeftMenuController.$inject = ['CategoryService', '$location']
 
-    function LeftMenuController($scope, CategoryService, $location) {
+    function LeftMenuController(CategoryService, $location) {
         var vm = this;
         vm.result = {};
         vm.isActive = isActive;
 
         function isActive(path) {
-            var c = path === $location.path();
-            return c;
+            return path === $location.path();
         }
 
-        activate()
+        activate();
 
         function activate() {
             CategoryService.getCategories().then(loadCategoriesSuccess, loadCategoriesFailure);
         }
 
-        function loadCategoriesSuccess(data, status, headers, config) {
-
+        function loadCategoriesSuccess(data) {
             vm.result = data;
         }
 
-        function loadCategoriesFailure(data, status, headers, config) {
-            console.log(data.data);
-            vm.result = data;
+        function loadCategoriesFailure() {
+            Snackbar.error('Load categories failure');
         }
     }
 })();

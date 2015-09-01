@@ -8,9 +8,9 @@
     var ControllersApp = angular.module('application.authentication.controllers');
     ControllersApp.controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$location', '$scope', 'Authentication'];
+    RegisterController.$inject = ['$location', 'Authentication'];
 
-    function RegisterController($location, $scope, Authentication){
+    function RegisterController($location, Authentication) {
         var vm = this;
         vm.register = register;
 

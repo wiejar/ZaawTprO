@@ -7,7 +7,7 @@
 
     angular.module('application.products.controllers').controller('ProductsController', ProductsController);
 
-    ProductsController.$inject = ['ProductService', '$location', '$routeParams'];
+    ProductsController.$inject = ['ProductService', '$location', '$routeParams', 'Snackbar'];
 
     /**
      * @class ProductsController
@@ -16,7 +16,7 @@
      * @param $location Injected service which allow go into another page.
      * @param $routeParams Injected service which allow get data from url.
      */
-    function ProductsController(ProductService, $location, $routeParams) {
+    function ProductsController(ProductService, $location, $routeParams, Snackbar) {
         var vm = this;
         /**
          * @properties products
@@ -56,8 +56,8 @@
             vm.poducts = data.data;
         }
 
-        function failGetProducts(data) {
-            console.log(data);
+        function failGetProducts() {
+            Snackbar.error('Fail downloaded products!');
         }
     }
 })();

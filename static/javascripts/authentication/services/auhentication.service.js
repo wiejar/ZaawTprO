@@ -42,46 +42,44 @@
                 tax_identification_number: tax_identification_number
             }).then(registerSuccess, registerFailure);
 
-            function registerSuccess(data, status, headers, config) {
+            function registerSuccess() {
                 Authentication.login(email, password);
             }
 
-            function registerFailure(data, status, headers, config) {
-                console.error('Epic failure!');
+            function registerFailure() {
+                Snackbar.show("Register failure!");
             }
-        };
+        }
 
         function login(email, password) {
             return $http.post('/api/v1/auth/login/', {
                 email: email,
                 password: password
             }).then(loginSuccess, loginFailure);
-        };
+        }
 
         function logout() {
             return $http.post('/api/v1/auth/logout/', {}).then(logoutSuccess, logoutFailure);
         }
 
-        function loginSuccess(data, status, headers, config) {
+        function loginSuccess(data) {
             Authentication.setAuthenticatedAccount(data.data);
             //$location.url('/');
             $window.location.reload();
         }
 
-        function loginFailure(data, status, headers, config) {
-            console.error('Epic failure!');
-            console.error(data.data);
-            Snackbar.show("Authentication failed!");
+        function loginFailure() {
+            Snackbar.error("Authentication failed!");
         }
 
-        function logoutSuccess(data, status, headers, config) {
+        function logoutSuccess() {
             Authentication.unauthenticated();
             //$location.url('/');
             $window.location.reload();
         }
 
-        function logoutFailure(data, status, headers, config) {
-            console.error('Epic failure!');
+        function logoutFailure() {
+            Snackbar.error('Logout failure');
         }
 
         function getAuthenticatedAccount() {
@@ -90,18 +88,18 @@
             }
 
             return JSON.parse($cookies.authenticatedAccount);
-        };
+        }
 
         function isAuthenticated() {
             return !!$cookies.authenticatedAccount;
-        };
+        }
 
         function setAuthenticatedAccount(account) {
             $cookies.authenticatedAccount = JSON.stringify(account);
-        };
+        }
 
         function unauthenticated() {
             delete $cookies.authenticatedAccount;
         }
-    };
+    }
 })();

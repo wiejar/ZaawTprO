@@ -25,14 +25,11 @@
             render(data.data, null);
         }
 
-        function fail(data) {
-            console.log('Error: ' + data);
+        function fail() {
+            Snackbar.error('Get information about product failed');
         }
 
-
         function render(current) {
-
-            //vm.rows = [];
             vm.dict["id"] = current.id;
             vm.dict["state"] = current.state;
             vm.dict["shippingAddress"] = current.shippingAddress;
@@ -43,8 +40,6 @@
             vm.dict["created_at"] = current.created_at;
             vm.dict["last_change"] = current.last_change;
 
-
-            //console.log(current);
             asyncLoop(current.productOrder.length, function (loop) {
                     getProductInfo(current.productOrder[loop.iteration()], function (result) {
                         // Okay, for cycle could continue
@@ -52,7 +47,6 @@
                     })
                 },
                 function () {
-                    console.log('cycle ended');
                 }
             );
         }

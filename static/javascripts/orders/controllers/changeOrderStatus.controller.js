@@ -24,16 +24,20 @@
             vm.data = data.data;
         }
 
-        function fail(data) {
-            console.log(data);
+        function fail() {
+            Snackbar.error('Load orders failure');
         }
 
         function next(row) {
-            Order.saveNewState(row).then(suca, fail);
+            Order.saveNewState(row).then(saveSuc, saveFail);
         }
 
-        function suca(data) {
+        function saveSuc() {
             activate();
+        }
+
+        function saveFail() {
+            Snackbar.error('Save new state failure');
         }
     }
 })();

@@ -37,8 +37,8 @@
             render(data.data, null);
         }
 
-        function fail(data) {
-            console.log('fail');
+        function fail() {
+            Snackbar.error('Fail downloaded orders!');
         }
 
         function calculateNumberOfColumns() {
@@ -101,8 +101,7 @@
 
         }
 
-        function createOrderSuccessFn(data, status, headers, config) {
-            console.log(data.data);
+        function createOrderSuccessFn() {
             Snackbar.show('Success! Order created.');
             //TODO: dopisa� sleep i redirect na ordersy
             BasketService.removeAll();
@@ -113,9 +112,7 @@
          * @name createPostErrorFn
          * @desc Propogate error event and show snackbar with error message
          */
-        function createOrderErrorFn(data, status, headers, config) {
-
-            console.log(data.data);
+        function createOrderErrorFn(data) {
             $scope.$broadcast('order.created.error');
             Snackbar.error(data.error);
         }

@@ -9,7 +9,7 @@
 
     angular.module('application.products.controllers').controller('productPage', ProductPageController);
 
-    ProductPageController.$inject = ['ProductService', '$routeParams', 'Utileeer', 'BasketService'];
+    ProductPageController.$inject = ['ProductService', '$routeParams', 'Utileeer', 'BasketService', 'Snackbar'];
 
     /**
      * @class ProductPageController
@@ -19,7 +19,7 @@
      * @param Utileeer Injected util service.
      * @param BasketService Injected service which allow add product into basket.
      */
-    function ProductPageController(ProductService, $routeParams, Utileeer, BasketService) {
+    function ProductPageController(ProductService, $routeParams, Utileeer, BasketService, Snackbar) {
         var vm = this;
         vm.isNotEmpty = Utileeer.isNotEmpty;
         /**
@@ -74,8 +74,8 @@
             vm.specification = allSpecification;
         }
 
-        function failGetProduct(data) {
-            console.log(data);
+        function failGetProduct() {
+            Snackbar.error('Fail downloaded product data!');
         }
     }
 })();
