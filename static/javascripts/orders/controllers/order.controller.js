@@ -10,12 +10,33 @@
 
     ProductOrderController.$inject = ['$scope', '$routeParams', 'ProductOrder', 'ProductService'];
 
-    function ProductOrderController($scope, $routeParams, ProductOrder, ProductService) {
+    /**
+     * @class ProductOrderController
+     * @description Contains all functionality available on orders page.
+     * @param $routeParams Injected service which allow get data from url.
+     * @param ProductOrder Injected service which allow add product into basket.
+     * @param ProductService Injected service which allow download data about products.
+     */
+    function ProductOrderController($routeParams, ProductOrder, ProductService) {
         var vm = this;
+        /**
+         * @properties productOrderItems
+         * @description All products related to order
+         * @type {Object}
+         */
         vm.productOrderItems = [];
+        /**
+         * @properties dict
+         * @description Fields of productOrder
+         * @type {Object}
+         */
         vm.dict = {};
 
         activate();
+        /**
+         * @method activate
+         * @description Method execute after create controller. Download data about selected product.
+         */
         function activate() {
             var id = $routeParams.id;
             ProductOrder.get(id).then(suc, fail);
@@ -25,10 +46,19 @@
             render(data.data, null);
         }
 
+        /**
+         * @method fail
+         * @description In case of error proper message is visible in browser
+         */
         function fail() {
             Snackbar.error('Get information about product failed');
         }
 
+        /**
+         * @method render
+         * @description Renders order details
+         * @param current Single order data.
+         */
         function render(current) {
             vm.dict["id"] = current.id;
             vm.dict["state"] = current.state;
@@ -51,6 +81,12 @@
             );
         }
 
+        /**
+         * @method getProductInfo
+         * @description Go to product page.
+         * @param a {Object} Order, which should be showed.
+         * @param callback callback request
+         */
         function getProductInfo(a, callback) {
             ProductService.getSimpleProduct(a.product).then(function (val) {
                 a.product = val.data;

@@ -10,13 +10,36 @@
 
     OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService'];
 
+
+    /**
+     * @class OrderController
+     * @description Contains all functionality available on orders page.
+     * @param $scope
+     * @param Order Injected service which allow handle orders.
+     * @param Snackbar Injected service which allows to show snackbar messages in browser
+     * @param BasketService Injected service which allow add product into basket.
+     */
     function OrderController($scope, Order, Snackbar, BasketService) {
         var vm = this;
+         /**
+         * @properties data
+         * @description All orders
+         * @type {Object}
+         */
         vm.data = [];
+        /**
+         * @properties columns
+         * @description single columns
+         * @type {Object}
+         */
         vm.columns = [];
         vm.submit = submit;
 
         activate();
+        /**
+         * @method activate
+         * @description Method execute after create controller. Download data about selected product.
+         */
         function activate() {
 
             $scope.$watchCollection(function () {
@@ -28,6 +51,7 @@
             Order.all().then(suc, fail);
         }
 
+
         function simpleRender() {
             render(vm.data, null);
         }
@@ -37,10 +61,19 @@
             render(data.data, null);
         }
 
+        /**
+         * @method fail
+         * @description In case of error proper message is visible in browser
+         */
         function fail() {
             Snackbar.error('Fail downloaded orders!');
         }
 
+        /**
+         * @method calculateNumberOfColumns
+         * @description Calculate number of columns based on browser width.
+         * @return {Number} amount of columns
+         */
         function calculateNumberOfColumns() {
             var width = $(window).width();
 
@@ -55,6 +88,11 @@
             }
         }
 
+        /**
+         * @method approximateShortestColumn
+         * @description Calculate shortest column.
+         * @return {Number} shortest column ID
+         */
         function approximateShortestColumn() {
             var scores = vm.columns.map(columnMapFn);
             return scores.indexOf(Math.min.apply(this, scores));
@@ -72,6 +110,12 @@
             }
         }
 
+        /**
+         * @method render
+         * @description Renders orders for browser view.
+         * @param current contains order objects.
+         * @param original contains new view order objects
+         */
         function render(current, original) {
             if (current !== original) {
                 vm.columns = [];
@@ -88,6 +132,10 @@
 
         }
 
+        /**
+         * @method submit
+         * @description Creates new order
+         */
         function submit() {
             var bas = BasketService.get();
             var sum = 0;
@@ -101,6 +149,10 @@
 
         }
 
+        /**
+         * @method createOrderSuccessFn
+         * @description Creates new order success message
+         */
         function createOrderSuccessFn() {
             Snackbar.show('Success! Order created.');
             //TODO: dopisa� sleep i redirect na ordersy
