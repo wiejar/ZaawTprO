@@ -8,7 +8,7 @@
 
     angular.module('application.orders.controllers').controller('ProductOrderController', ProductOrderController);
 
-    ProductOrderController.$inject = ['$scope', '$routeParams', 'ProductOrder', 'ProductService'];
+    ProductOrderController.$inject = ['$routeParams', 'ProductOrder', 'ProductService'];
 
     /**
      * @class ProductOrderController
