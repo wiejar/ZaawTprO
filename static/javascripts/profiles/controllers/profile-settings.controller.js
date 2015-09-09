@@ -42,7 +42,7 @@
 
             if (!authenticatedAccount || authenticatedAccount.username != username) {
                 Snackbar.error('You are not authorised to see this page');
-                //$location.url('/');
+                $location.url('/home');
             }
 
             Profile.get(username).then(profileSuccessFn, profileErrorFn);
@@ -62,7 +62,7 @@
             function profileErrorFn(data) {
                 vm.profile = data.data;
                 Snackbar.error('That user does not exist');
-                //$location.url('/');
+                $location.url('/home');
             }
         }
 

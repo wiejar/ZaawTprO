@@ -8,7 +8,7 @@
 
     angular.module('application.orders.controllers').controller('OrderController', OrderController);
 
-    OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService', 'ProductService'];
+    OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService', 'ProductService', '$location'];
 
 
     /**
@@ -20,7 +20,7 @@
      * @param BasketService Injected service which allow add product into basket.
      * @param ProductService  Injected service which allow fetch data about products.
      */
-    function OrderController($scope, Order, Snackbar, BasketService, ProductService) {
+    function OrderController($scope, Order, Snackbar, BasketService, ProductService, $location) {
         var vm = this;
          /**
          * @properties data
@@ -225,6 +225,7 @@
         function createOrderSuccessFn() {
             Snackbar.show('Success! Order created.');
             BasketService.removeAll();
+            $location.url('/home');
         }
 
 
