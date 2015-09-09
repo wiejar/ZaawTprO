@@ -6,6 +6,19 @@ from django.db import models
 
 
 class AccountManager(BaseUserManager):
+    """
+    DataBase model: specification of newly created user.
+    """
+
+    ## This method creates new user.
+    # @param self The object pointer
+    # @type: Object
+    # @param email New user's email
+    # @type: String
+    # @param password New user's password
+    # @type: String
+    # @return object account
+    # @rtype: Object
     def create_user(self, email, password=None, **kwargs):
         if not email:
             raise ValueError('Users must have a valid email address.')
@@ -26,6 +39,15 @@ class AccountManager(BaseUserManager):
 
         return account
 
+    ## This method creates new superuser.
+    # @param self The object pointer
+    # @type: Object
+    # @param email New superuser's email
+    # @type: String
+    # @param password New superuser's password
+    # @type: String
+    # @return object account
+    # @rtype: Object
     def create_superuser(self, email, password=None, **kwargs):
         account = self.create_user(email, password, **kwargs)
 
@@ -57,11 +79,26 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    ## This method shows the user's email.
+    # @param self The object pointer
+    # @type: Object
+    # @return String email
+    # @rtype: String
     def __unicode__(self):
         return self.email
 
+    ## This method shows the user's full name.
+    # @param self The object pointer
+    # @type: Object
+    # @return String user's full name
+    # @rtype: String
     def get_full_name(self):
         return ' '.join([self.first_name, self.last_name])
 
+    ## This method shows the user's first name.
+    # @param self The object pointer
+    # @type: Object
+    # @return String user's first name
+    # @rtype: String
     def get_short_name(self):
         return self.first_name
