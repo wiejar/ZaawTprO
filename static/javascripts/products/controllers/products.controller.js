@@ -15,6 +15,7 @@
      * @param ProductService Injected service which allow download data about products.
      * @param $location Injected service which allow go into another page.
      * @param $routeParams Injected service which allow get data from url.
+     * @param Snackbar Injected service which show small window with information about fail during download data
      */
     function ProductsController(ProductService, $location, $routeParams, Snackbar) {
         var vm = this;
@@ -36,7 +37,7 @@
 
         /**
          * @method activate
-         * @description Method execute after create controller. Download data about products in selected category.
+         * @description Method execute after create controller. Download products data in selected category.
          */
         function activate() {
             var category = $routeParams.categoryName;
@@ -52,10 +53,19 @@
             $location.path('/product/' + uniqueName);
         }
 
+        /**
+         * @method successGetProducts
+         * @description Action invoked after success download data from server, save data in controller and concat specification.
+         * @param data {Object} Downloaded data
+         */
         function successGetProducts(data) {
             vm.poducts = data.data;
         }
 
+        /**
+         * @method failGetProducts
+         * @description Action invoked after failed download data from server, show information about fail.
+         */
         function failGetProducts() {
             Snackbar.error('Fail downloaded products!');
         }

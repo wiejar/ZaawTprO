@@ -7,7 +7,7 @@
 
     angular.module('application.basket.controllers').controller('BasketController', BasketController);
 
-    BasketController.$inject = ['BasketService', 'ProductService', '$location'];
+    BasketController.$inject = ['BasketService', 'ProductService', '$location', 'Snackbar'];
 
     /**
      * @class BasketController
@@ -16,7 +16,7 @@
      * @param ProductService Injected service which contains method to download product information.
      * @param $location Injected service which allow to change website page during some action.
      */
-    function BasketController(BasketService, ProductService, $location) {
+    function BasketController(BasketService, ProductService, $location, Snackbar) {
         var vm = this;
 
         var data = [];
@@ -127,6 +127,11 @@
             return sum;
         }
 
+        /**
+         * @method successGet
+         * @description Action invoked after success download data from server, save data in controller.
+         * @param data Downloaded data
+         */
         function successGet(dataa) {
             var product = dataa.data;
             var elem = map[product.id];
@@ -134,8 +139,12 @@
             vm.productTable[elem] = product;
         }
 
+        /**
+         * @method failGetProduct
+         * @description Action invoked after failed download data from server, show information about fail.
+         */
         function failGet() {
-            //Snackbar.error('Get information about product failed');
+            Snackbar.error('Get information about product failed');
         }
     }
 })();

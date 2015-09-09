@@ -18,6 +18,7 @@
      * @param $routeParams Injected service which allow get data from url.
      * @param Utileeer Injected util service.
      * @param BasketService Injected service which allow add product into basket.
+     * @param Snackbar Injected service which show small window with information about fail during download data
      */
     function ProductPageController(ProductService, $routeParams, Utileeer, BasketService, Snackbar) {
         var vm = this;
@@ -60,11 +61,20 @@
             BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
         }
 
+        /**
+         * @method successGetProduct
+         * @description Action invoked after success download data from server, save data in controller and concat specification.
+         * @param data {Object} Downloaded data
+         */
         function successGetProduct(data) {
             vm.basic = data.data;
             concatSpecification()
         }
 
+        /**
+         * @method concatSpecification
+         * @description Concat specification from different sources.
+         */
         function concatSpecification() {
             var allSpecification = {};
             for (var tab in vm.basic.productSpecification) {
@@ -74,6 +84,10 @@
             vm.specification = allSpecification;
         }
 
+        /**
+         * @method failGetProduct
+         * @description Action invoked after failed download data from server, show information about fail.
+         */
         function failGetProduct() {
             Snackbar.error('Fail downloaded product data!');
         }

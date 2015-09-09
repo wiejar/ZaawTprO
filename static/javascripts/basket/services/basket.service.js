@@ -40,6 +40,11 @@
             return basket;
         }
 
+        /**
+         * @method put
+         * @description Put data to cache.
+         * @param basketObject {Object} Content of basket.
+         */
         function put(basketObject) {
             $cookieStore.put('basket_application', basketObject);
         }
@@ -112,6 +117,13 @@
             put([]);
         }
 
+        /**
+         * @method getIndexOf
+         * @description Get index of looking product in basket.
+         * @param productId Product Id which looking for.
+         * @param basket Data in which looking for.
+         * @returns {number} Index of selected product or -1 if not exist.
+         */
         function getIndexOf(productId, basket) {
             var ob;
             for (ob in basket) {

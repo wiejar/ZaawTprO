@@ -9,6 +9,7 @@ from productSpecification.serializers import ProductSpecificationModelSerializer
 from sever.calculator import NormalCalculator
 from abc import ABCMeta
 
+
 class CategorySerializers(serializers.ModelSerializer):
     """
     Serializer to serialize pictures to product relation

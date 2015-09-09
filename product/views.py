@@ -12,9 +12,17 @@ from sever.Singleton import Singleton
 
 
 class BaseProductViewSet(viewsets.ModelViewSet):
+    """
+    View - base class for view which get data about product.
+    """
     __metaclass_ = ABCMeta
     queryset = Product.objects.all()
 
+    ## This method return serializer with set calculator. [Strategy design pattern]
+    # @param self The object pointer
+    # @type: BaseProductViewSet
+    # @return Serializer with set filed
+    # @rtype: Serializer
     def get_serializer_class(self):
         serializer = super(BaseProductViewSet, self).get_serializer_class()
         serializer.calculator = Singleton().get_calculator(self.request)
