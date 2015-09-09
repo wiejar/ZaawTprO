@@ -27,7 +27,13 @@ class SingleProductViewSet(BaseProductViewSet):
     Product is selecting on the base 'uniqueName' field.
     """
     lookup_field = 'uniqueName'
+    queryset = Product.objects.all()
     serializer_class = FullProductSerializers
+
+    def perform_update(self, serializer):
+        instance = serializer.instance
+        instance.save(update_fields=['available'])
+        serializer.update_hash(instance)
 
 
 class ProductViewSet(BaseProductViewSet):

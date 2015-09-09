@@ -18,7 +18,8 @@
         var service = {
             getByCategory: getByCategory,
             getProduct: getProduct,
-            getSimpleProduct: getSimpleProduct
+            getSimpleProduct: getSimpleProduct,
+            updateProduct: updateProduct
         };
 
         /**
@@ -52,6 +53,12 @@
          */
         function getSimpleProduct(id) {
             return $http.get('/api/v1/simpleProduct/' + id + '/');
+        }
+
+        function updateProduct(product){
+            console.log("PR z PR SER");
+            console.log(product);
+            return $http.put('/api/v1/simpleProduct/'+product.id + '/', product);
         }
 
         return service;
