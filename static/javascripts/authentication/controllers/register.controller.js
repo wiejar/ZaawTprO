@@ -10,8 +10,20 @@
 
     RegisterController.$inject = ['$location', 'Authentication'];
 
+    /**
+     * @class RegisterController
+     * @description Contains all functionalities to register new user.
+     * @param $location Injected service which allow go into another page.
+     * @param Authentication Injected service contains methods to registrate new user.
+     */
+
+    /**
+     * @method RegisterController
+     * @description Contains information about registrating user.
+     */
     function RegisterController($location, Authentication) {
         var vm = this;
+
         vm.register = register;
 
         activate();
@@ -31,9 +43,13 @@
                                         vm.company_name, vm.tax_identification_number);
             }
 
+        /**
+         * @method activate
+         * @description Method execute after create controller. Redirects user to chosen url.
+         */
         function activate(){
             if(Authentication.isAuthenticated()){
-                //$location.url('/');
+                $location.url('/home');
             }
         }
     }

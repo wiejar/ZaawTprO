@@ -9,6 +9,11 @@
 
     config.$inject = ['$routeProvider'];
 
+    /**
+     * @class config
+     * @description This class creates configuration of possible actions.
+     * @param $routeProvider Injected service which provides routes for actions.
+     */
     function config($routeProvider) {
         $routeProvider.when('/register', {
             controller: 'RegisterController',

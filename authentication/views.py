@@ -15,10 +15,19 @@ from authentication.permissions import IsAccountOwner
 
 
 class AccountViewSet(viewsets.ModelViewSet):
+    """
+    View - get full data about account.
+    Account is selecting on the base 'username' field.
+    """
     lookup_field = 'username'
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
+    ## This method gives permission to create new user.
+    # @param self The object pointer
+    # @type: Object
+    # @return Permission for user to create new account
+    # @rtype: Object
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
@@ -28,6 +37,11 @@ class AccountViewSet(viewsets.ModelViewSet):
 
         return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
+    ## This method gives permission to update user's data.
+    # @param self The object pointer
+    # @type: Object
+    # @param serializer to serialize update
+    # @type: Object
     def perform_update(self, serializer):
         if serializer.is_valid():
             instance = serializer.instance
@@ -43,6 +57,13 @@ class AccountViewSet(viewsets.ModelViewSet):
 
             serializer.update_hash(instance)
 
+    ## This method creates server's response.
+    # @param self The object pointer
+    # @type: Object
+    # @param request for the response
+    # @type: Object
+    # @return Response server's response
+    # @rtype: Response
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 
@@ -57,6 +78,17 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 
 class LoginView(views.APIView):
+    """
+    View to log in for user - data necessary for user to log in.
+    """
+
+    ## This is POST method.
+    # @param self The object pointer
+    # @type: Object
+    # @param request for the response
+    # @type: Object
+    # @return Response server's response
+    # @rtype: Response
     def post(self, request, format=None):
         datas = request.body
         data = json.loads(datas.decode("utf-8"))
@@ -83,8 +115,18 @@ class LoginView(views.APIView):
 
 
 class LogoutView(views.APIView):
+    """
+    View to log out for user.
+    """
     permission_classes = (permissions.IsAuthenticated,)
 
+    ## This is POST method.
+    # @param self The object pointer
+    # @type: Object
+    # @param request for the server's response
+    # @type: Object
+    # @return Response server's response
+    # @rtype: Response
     def post(self, request, format=None):
         logout(request)
 
