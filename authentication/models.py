@@ -68,8 +68,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=40, blank=True)
     phone_number = models.CharField(max_length=9, blank=True)
     is_admin = models.BooleanField(default=False)
-    company_name = models.CharField(max_length=40, blank=True)
-    tax_identification_number = models.CharField(max_length=10, blank=True)
+    company_name = models.CharField(max_length=40, null=True, blank=True)
+    tax_identification_number = models.CharField(max_length=10, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
