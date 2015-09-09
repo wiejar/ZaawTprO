@@ -79,11 +79,20 @@ class OrderSerializers(BaseProductSerializer):
     # @rtype: Order
     def create(self, validated_data):
         productOrder_data = validated_data.pop('productOrder')
+
+        for productOrders in productOrder_data:
+            prod = productOrders['product']
+            prod_from_db = Product.objects.get(id=prod.id)
+            if prod_from_db.available < productOrders['quantity']:
+                raise Exception('Sufficient quantity of '.append(prod_from_db.name).apend(' is available.'))
+
         order = Order.objects.create(**validated_data)
 
         for productOrders in productOrder_data:
-            productOrders['price'] = productOrders['price']
-            ProductOrder.objects.create(order=order, **productOrders)
+            prod = productOrders['product']
+            prod_from_db = Product.objects.get(id=prod.id)
+            ins = ProductOrder.objects.create(order=order, **productOrders)
+            Product.objects.filter(pk=prod_from_db.pk).update(available=prod_from_db.available - ins.quantity)
         return order
 
     ## Method which allows to update order parameters
