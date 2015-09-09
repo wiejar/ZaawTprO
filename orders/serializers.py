@@ -10,17 +10,32 @@ from product.serializers import BaseProductSerializer
 
 
 class ProductOrderSerializers(serializers.ModelSerializer):
+    """
+    Serializer to serialize products related to order.
+    serialize fields: 'id', 'order', 'product',  'price', 'quantity'
+    """
     order = serializers.PrimaryKeyRelatedField(queryset=Order.objects.all(), required=False)
     serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
 
     class Meta:
+        """
+        Definition of ProductOrderSerializers
+        """
         model = ProductOrder
 
         fields = ('id', 'order', 'product',  'price', 'quantity')
 
 
 class AdminOrderSerializers(BaseProductSerializer):
+    """
+    Serializer to manage statuses of orders.
+    serialize fields: 'id', 'state', 'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information',
+        'created_at', 'last_change', 'productOrder'
+    """
     class Meta:
+        """
+        Definition of AdminOrderSerializers
+        """
         model = Order
 
         fields = (
@@ -30,6 +45,9 @@ class AdminOrderSerializers(BaseProductSerializer):
             'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information', 'created_at',
             'last_change', 'productOrder',)
 
+    ## Method which allows to change state of order
+    # @return updated serialized object
+    # @rtype: Object
     def update(self, instance, validated_data):
         instance.state = validated_data['state']
         instance.save()
@@ -37,10 +55,18 @@ class AdminOrderSerializers(BaseProductSerializer):
 
 
 class OrderSerializers(BaseProductSerializer):
+    """
+    Serializer used to serialize whole orders
+    serialize fields: 'id', 'state', 'owner', 'shippingAddress', 'postalCode', 'city', 'totalprice', 'additional_information',
+        'created_at', 'last_change', 'productOrder'
+    """
     owner = AccountSerializer(required=False, read_only=False)
     productOrder = ProductOrderSerializers(many=True)
 
     class Meta:
+        """
+        Definition of OrderSerializers
+        """
         model = Order
 
         fields = (
@@ -48,6 +74,9 @@ class OrderSerializers(BaseProductSerializer):
             'created_at', 'last_change', 'productOrder',)
         read_only_fields = ('id', 'created_at', 'last_change', 'owner',)
 
+    ## Method which creates productOeders object related to order
+    # @return updated serialized object
+    # @rtype: Order
     def create(self, validated_data):
         productOrder_data = validated_data.pop('productOrder')
         order = Order.objects.create(**validated_data)
@@ -57,6 +86,9 @@ class OrderSerializers(BaseProductSerializer):
             ProductOrder.objects.create(order=order, **productOrders)
         return order
 
+    ## Method which allows to update order parameters
+    # @return updated serialized object
+    # @rtype: Object
     def update(self, instance, validated_data):
         instance.state = validated_data['state']
         instance.shippingAddress = validated_data['shippingAddress']
@@ -68,7 +100,6 @@ class OrderSerializers(BaseProductSerializer):
 
         if id in validated_data:
 
-            # nie wiem czy dziala -prawdidlowy update
             productOrder_data = validated_data.pop('productOrder')
             page_ids = [item['id'] for item in productOrder_data]
             for page in instance.productOrder:

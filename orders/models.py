@@ -7,7 +7,9 @@ from product.models import Product
 
 
 class Order(models.Model):
-    #TODO: zmienić na wzorzec STAN
+    """
+    DataBase model of whole order.
+    """
     state = models.CharField(max_length=50)
     owner = models.ForeignKey(Account)
     shippingAddress = models.TextField()
@@ -18,12 +20,10 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_change = models.DateTimeField(auto_now=True)
 
-    #TODO: dpisac metody do obslugi stanów
-    def functionToManageState(self):
-        pass
-
-
 class ProductOrder(models.Model):
+    """
+    DataBase model of products related to order.
+    """
     order = models.ForeignKey(Order, related_name='productOrder')
     product = models.ForeignKey(Product)
     price = models.DecimalField(max_digits=10, decimal_places=2)

@@ -17,6 +17,11 @@
 
     run.$inject = ['$http'];
 
+    /**
+     * @class run
+     * @description This class creates route.
+     * @param $http Injected service which allow to go into another page.
+     */
     function run($http){
         $http.defaults.xsrfHeaderName='X-CSRFToken';
         $http.defaults.xsrfCookieName='csrftoken';

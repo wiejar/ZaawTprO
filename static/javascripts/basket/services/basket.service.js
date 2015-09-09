@@ -7,7 +7,7 @@
 
     angular.module('application.basket.services').factory('BasketService', BasketService);
 
-    BasketService.$inject = ['$cookieStore', 'Utileeer', 'Snackbar'];
+    BasketService.$inject = ['$cookieStore', 'Utileeer', 'Snackbar', 'ProductService'];
 
     /**
      * @class BasketService
@@ -16,13 +16,15 @@
      * @param Utileeer {Object} Injected service to check if element is not empty.
      * @param Snackbar {Object} Injected service to show Snackbar.
      */
-    function BasketService($cookieStore, Utileeer, Snackbar) {
+    function BasketService($cookieStore, Utileeer, Snackbar, ProductService) {
         var BasketService = {
             get: get,
             add: add,
             set: set,
             remove: remove,
-            removeAll: removeAll
+            removeAll: removeAll,
+            getProductQuantity: getProductQuantity,
+            validateBasket: validateBasket
         };
 
         return BasketService;
@@ -134,5 +136,36 @@
             return -1;
         }
 
+        /**
+         * @method getProductQuantity
+         * @description Returns quantity of selected product in cart
+         * @param productId Product Id to be checked in cart
+         */
+        function getProductQuantity(productId) {
+            var basket = get();
+            var ob;
+            for (ob in basket) {
+                if (basket[ob].productId == productId) {
+                    return basket[ob].quantity;
+                }
+            }
+            return 0;
+        }
+
+        /**
+         * @method validateBasket
+         * @description Returns true if all product in basket are available
+         * @param basket Basket to be validated
+         */
+        function validateBasket(basket) {
+            var ob;
+            for (ob in basket) {
+                if (basket[ob].quantity<=
+                    ProductService.getSimpleProduct(basket[ob].productId).avaiable) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 })();

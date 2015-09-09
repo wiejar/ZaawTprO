@@ -8,15 +8,39 @@
 
     angular.module('application.orders.controllers').controller('OrderController', OrderController);
 
-    OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService'];
+    OrderController.$inject = ['$scope', 'Order', 'Snackbar', 'BasketService', 'ProductService'];
 
-    function OrderController($scope, Order, Snackbar, BasketService) {
+
+    /**
+     * @class OrderController
+     * @description Contains all functionality available on orders page.
+     * @param $scope
+     * @param Order Injected service which allow handle orders.
+     * @param Snackbar Injected service which allows to show snackbar messages in browser
+     * @param BasketService Injected service which allow add product into basket.
+     * @param ProductService  Injected service which allow fetch data about products.
+     */
+    function OrderController($scope, Order, Snackbar, BasketService, ProductService) {
         var vm = this;
+         /**
+         * @properties data
+         * @description All orders
+         * @type {Object}
+         */
         vm.data = [];
+        /**
+         * @properties columns
+         * @description single columns
+         * @type {Object}
+         */
         vm.columns = [];
         vm.submit = submit;
 
         activate();
+        /**
+         * @method activate
+         * @description Method execute after create controller. Download data about selected product.
+         */
         function activate() {
 
             $scope.$watchCollection(function () {
@@ -28,6 +52,7 @@
             Order.all().then(suc, fail);
         }
 
+
         function simpleRender() {
             render(vm.data, null);
         }
@@ -37,10 +62,19 @@
             render(data.data, null);
         }
 
+        /**
+         * @method fail
+         * @description In case of error proper message is visible in browser
+         */
         function fail() {
             Snackbar.error('Fail downloaded orders!');
         }
 
+        /**
+         * @method calculateNumberOfColumns
+         * @description Calculate number of columns based on browser width.
+         * @return {Number} amount of columns
+         */
         function calculateNumberOfColumns() {
             var width = $(window).width();
 
@@ -55,6 +89,11 @@
             }
         }
 
+        /**
+         * @method approximateShortestColumn
+         * @description Calculate shortest column.
+         * @return {Number} shortest column ID
+         */
         function approximateShortestColumn() {
             var scores = vm.columns.map(columnMapFn);
             return scores.indexOf(Math.min.apply(this, scores));
@@ -72,6 +111,12 @@
             }
         }
 
+        /**
+         * @method render
+         * @description Renders orders for browser view.
+         * @param current contains order objects.
+         * @param original contains new view order objects
+         */
         function render(current, original) {
             if (current !== original) {
                 vm.columns = [];
@@ -88,22 +133,97 @@
 
         }
 
+        /**
+         * @method submit
+         * @description Creates new order
+         */
         function submit() {
             var bas = BasketService.get();
             var sum = 0;
-            for (var x = 0; x < bas.length; x++) {
-                bas[x].product = bas[x].productId;
-                sum += bas[x].price * bas[x].quantity;
+            if (bas.length > 0) {
+                for (var x = 0; x < bas.length; x++) {
+                    bas[x].product = bas[x].productId;
+                    sum += bas[x].price * bas[x].quantity;
+                }
+                if (BasketService.validateBasket(bas)) {
+                    removeBoughtProducts(bas);
+                    var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, sum, 'New', bas).then(
+                        createOrderSuccessFn
+                        , createOrderErrorFn);
+                }
+                else {
+                    Snackbar.error("Error during saving order. Please verify if all products are available.");
+                }
             }
-            var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, sum, 'New', bas).then(
-                createOrderSuccessFn
-                , createOrderErrorFn);
-
+            else
+                Snackbar.error("Cannot create empty order");
         }
 
+        /**
+         * @method removeBoughtProducts
+         * @description Removes bought products.
+         * @param basket Products in basket to be remove from available list.
+         */
+        function removeBoughtProducts(basket) {
+            function getProductInfo(a, callback) {
+                ProductService.getSimpleProduct(a).then(function (val) {
+                    var product = val.data;
+                    //TODO: wstawidc poprawna wartosc odejmowania
+                    product.available -= basket[0].quantity;
+                    ProductService.updateProduct(product);
+                });
+                callback();
+            }
+
+            asyncLoop(basket.length, function (loop) {
+                    getProductInfo(basket[loop.iteration()].productId, function (result) {
+                        loop.next();
+                    })
+                },
+                function () {
+                }
+            );
+        }
+
+
+        function asyncLoop(iterations, func, callback) {
+            var index = 0;
+            var done = false;
+            var loop = {
+                next: function () {
+                    if (done) {
+                        return;
+                    }
+
+                    if (index < iterations) {
+                        index++;
+                        func(loop);
+
+                    } else {
+                        done = true;
+                        callback();
+                    }
+                },
+
+                iteration: function () {
+                    return index - 1;
+                },
+
+                break: function () {
+                    done = true;
+                    callback();
+                }
+            };
+            loop.next();
+            return loop;
+        }
+
+        /**
+         * @method createOrderSuccessFn
+         * @description Creates new order success message
+         */
         function createOrderSuccessFn() {
             Snackbar.show('Success! Order created.');
-            //TODO: dopisa� sleep i redirect na ordersy
             BasketService.removeAll();
         }
 

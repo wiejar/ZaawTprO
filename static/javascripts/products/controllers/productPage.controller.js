@@ -58,7 +58,12 @@
          * @description Add product to basket.
          */
         function buyProduct() {
-            BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
+            if (vm.quantity + BasketService.getProductQuantity(vm.basic.id) <= vm.basic.available) {
+                BasketService.add(vm.basic.id, vm.quantity, vm.basic.price);
+            }
+            else {
+                Snackbar.error("Cannot add more products than available");
+            }
         }
 
         /**
