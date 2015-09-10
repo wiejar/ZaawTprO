@@ -18,9 +18,8 @@
      * @param Order Injected service which allow handle orders.
      * @param Snackbar Injected service which allows to show snackbar messages in browser
      * @param BasketService Injected service which allow add product into basket.
-     * @param ProductService  Injected service which allow fetch data about products.
      */
-    function OrderController($scope, Order, Snackbar, BasketService, ProductService, $location) {
+    function OrderController($scope, Order, Snackbar, BasketService, $location) {
         var vm = this;
          /**
           * @property data
@@ -146,7 +145,6 @@
                     sum += bas[x].price * bas[x].quantity;
                 }
                 if (BasketService.validateBasket(bas)) {
-                    removeBoughtProducts(bas);
                     var order = Order.create(vm.shippingAddress, vm.postalCode, vm.city, vm.additional_information, sum, 'New', bas).then(
                         createOrderSuccessFn
                         , createOrderErrorFn);
@@ -159,64 +157,6 @@
                 Snackbar.error("Cannot create empty order");
         }
 
-        /**
-         * @method removeBoughtProducts
-         * @description Removes bought products.
-         * @param basket Products in basket to be remove from available list.
-         */
-        function removeBoughtProducts(basket) {
-            function getProductInfo(a, callback) {
-                ProductService.getSimpleProduct(a).then(function (val) {
-                    var product = val.data;
-                    //TODO: wstawidc poprawna wartosc odejmowania
-                    product.available -= basket[0].quantity;
-                    ProductService.updateProduct(product);
-                });
-                callback();
-            }
-
-            asyncLoop(basket.length, function (loop) {
-                    getProductInfo(basket[loop.iteration()].productId, function (result) {
-                        loop.next();
-                    })
-                },
-                function () {
-                }
-            );
-        }
-
-
-        function asyncLoop(iterations, func, callback) {
-            var index = 0;
-            var done = false;
-            var loop = {
-                next: function () {
-                    if (done) {
-                        return;
-                    }
-
-                    if (index < iterations) {
-                        index++;
-                        func(loop);
-
-                    } else {
-                        done = true;
-                        callback();
-                    }
-                },
-
-                iteration: function () {
-                    return index - 1;
-                },
-
-                break: function () {
-                    done = true;
-                    callback();
-                }
-            };
-            loop.next();
-            return loop;
-        }
 
         /**
          * @method createOrderSuccessFn
