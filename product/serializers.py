@@ -35,7 +35,11 @@ class BaseProductSerializerWithFields(BaseProductSerializer):
         return self.calculator.calculate_price(self.calculator, obj.price)
 
     def prepare_available(self, obj):
-        return self.calculator.max_quantity(self.calculator)
+        max = self.calculator.max_quantity(self.calculator)
+        if max > obj.available:
+            return obj.available
+        else:
+            return max
 
 
 class ProductSerializers(BaseProductSerializerWithFields):
