@@ -41,7 +41,6 @@
             var username = $routeParams.username;
 
             if (!authenticatedAccount || authenticatedAccount.username != username) {
-                Snackbar.error('You are not authorised to see this page');
                 $location.url('/home');
             }
 
