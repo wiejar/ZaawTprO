@@ -24,19 +24,19 @@
         var vm = this;
         vm.isNotEmpty = Utileeer.isNotEmpty;
         /**
-         * @properties quantity
+         * @property quantity
          * @description number of product which user want buy.
          * @type {number}
          */
         vm.quantity = 1;
         /**
-         * @properties basic
+         * @property basic
          * @description Basic information about product.
          * @type {Object}
          */
         vm.basic = {};
         /**
-         * @properties specification
+         * @property specification
          * @description Specification of product.
          * @type {Object}
          */

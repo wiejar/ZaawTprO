@@ -12,7 +12,7 @@
     function LeftMenuController(CategoryService, $location) {
         var vm = this;
         /**
-         * @properties result
+         * @property result
          * @description Categories which should be showed on the page.
          * @type {Object}
          */

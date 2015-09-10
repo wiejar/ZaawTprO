@@ -20,13 +20,13 @@
     function ProductOrderController($routeParams, ProductOrder, ProductService) {
         var vm = this;
         /**
-         * @properties productOrderItems
+         * @property productOrderItems
          * @description All products related to order
          * @type {Object}
          */
         vm.productOrderItems = [];
         /**
-         * @properties dict
+         * @property dict
          * @description Fields of productOrder
          * @type {Object}
          */

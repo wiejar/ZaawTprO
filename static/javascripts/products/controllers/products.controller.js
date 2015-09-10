@@ -20,14 +20,14 @@
     function ProductsController(ProductService, $location, $routeParams, Snackbar) {
         var vm = this;
         /**
-         * @properties products
+         * @property products
          * @description Array of products which should be visible on the page.
          * @type {Array}
          */
         vm.poducts = [];
         vm.dial = dial;
         /**
-         * @properties filter
+         * @property filter
          * @description Contain data for filter over product.
          * @type {Object}
          */

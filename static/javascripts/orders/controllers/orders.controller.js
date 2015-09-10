@@ -23,13 +23,13 @@
     function OrderController($scope, Order, Snackbar, BasketService, ProductService, $location) {
         var vm = this;
          /**
-         * @properties data
+          * @property data
          * @description All orders
          * @type {Object}
          */
         vm.data = [];
         /**
-         * @properties columns
+         * @property columns
          * @description single columns
          * @type {Object}
          */

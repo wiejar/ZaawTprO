@@ -38,7 +38,7 @@
          * @returns {Object} route to go into after destroying profile.
          */
         function destroy(profile){
-            return $http.delete('/api/v1/accounts/'+profile.id+'/');
+            return $http.delete('/api/v1/accounts/' + profile.username + '/');
         }
 
         /**

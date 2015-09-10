@@ -18,7 +18,7 @@
     function ChangeOrderStatusController(Order) {
         var vm = this;
         /**
-         * @properties quantity
+         * @property quantity
          * @description number of product which user want buy.
          * @type {number}
          */

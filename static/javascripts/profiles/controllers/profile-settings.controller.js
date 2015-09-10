@@ -71,7 +71,7 @@
          * @description Method execute to destroy user's profile. Redirects user to chosen url.
          */
         function destroy() {
-            Profile.destroy(vm.profile.username)
+            Profile.destroy(vm.profile)
                 .then(profileSuccessFn, profileErrorFn);
 
             /**
